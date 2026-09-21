@@ -20,10 +20,9 @@ export const initialCarsData: Car[] = [
     review_count: 185,
     location_address: "สุวรรณภูมิ • ดอนเมือง • โคราช • ทั่วไทย",
     distance_airport: "รับ-ส่งสนามบินฟรี",
-    image_url: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=80",
+    image_url: "/cars/altis.webp",
     gallery_urls: [
-      "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80"
+      "/cars/altis.webp"
     ],
     is_favorite: true,
     mileage: "นั่งได้ 1-3 ท่าน",
@@ -52,9 +51,9 @@ export const initialCarsData: Car[] = [
     review_count: 240,
     location_address: "สุวรรณภูมิ • ดอนเมือง • โคราช • ทั่วไทย",
     distance_airport: "รับ-ส่งสนามบินฟรี",
-    image_url: "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?auto=format&fit=crop&w=900&q=80",
+    image_url: "/cars/camry.webp",
     gallery_urls: [
-      "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?auto=format&fit=crop&w=1200&q=80"
+      "/cars/camry.webp"
     ],
     is_favorite: true,
     mileage: "นั่งได้ 1-4 ท่าน (พรีเมียม)",
@@ -83,9 +82,9 @@ export const initialCarsData: Car[] = [
     review_count: 172,
     location_address: "สุวรรณภูมิ • ดอนเมือง • โคราช • ทั่วไทย",
     distance_airport: "รับ-ส่งสนามบินฟรี",
-    image_url: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80",
+    image_url: "/cars/mux.webp",
     gallery_urls: [
-      "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80"
+      "/cars/mux.webp"
     ],
     is_favorite: false,
     mileage: "นั่งได้ 1-5 ท่าน (กระเป๋าเยอะ)",
@@ -114,9 +113,9 @@ export const initialCarsData: Car[] = [
     review_count: 310,
     location_address: "สุวรรณภูมิ • ดอนเมือง • โคราช • ทั่วไทย",
     distance_airport: "รับ-ส่งสนามบินฟรี",
-    image_url: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=80",
+    image_url: "/cars/fortuner.webp",
     gallery_urls: [
-      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1200&q=80"
+      "/cars/fortuner.webp"
     ],
     is_favorite: true,
     mileage: "นั่งได้ 1-5 ท่าน (ยอดนิยม)",
@@ -145,9 +144,9 @@ export const initialCarsData: Car[] = [
     review_count: 420,
     location_address: "สุวรรณภูมิ • ดอนเมือง • โคราช • ทั่วไทย",
     distance_airport: "รับ-ส่งสนามบินฟรี",
-    image_url: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=80",
+    image_url: "/cars/comuter.jpg",
     gallery_urls: [
-      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80"
+      "/cars/comuter.jpg"
     ],
     is_favorite: true,
     mileage: "นั่งได้ 5-10 ท่าน",
@@ -176,9 +175,9 @@ export const initialCarsData: Car[] = [
     review_count: 530,
     location_address: "สุวรรณภูมิ • ดอนเมือง • โคราช • ทั่วไทย",
     distance_airport: "รับ-ส่งสนามบินฟรี",
-    image_url: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=900&q=80",
+    image_url: "/cars/alphard.webp",
     gallery_urls: [
-      "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80"
+      "/cars/alphard.webp"
     ],
     is_favorite: true,
     mileage: "นั่งได้ 1-5 ท่าน (First Class)",

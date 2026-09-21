@@ -50,13 +50,24 @@ export function HeroSection({ lang, onSearch }: HeroSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4 pb-12 lg:pb-16">
           
           {/* Left Headline */}
-          <div className="lg:col-span-6 space-y-6">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+          <div className="lg:col-span-6 space-y-5">
+            {/* Brand Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 text-amber-900 text-xs sm:text-sm font-bold border border-amber-200/80 shadow-xs">
+              <span>{t.badge}</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.2]">
               {t.title}
             </h1>
 
-            {/* Badges / Metrics matching template */}
-            <div className="flex flex-wrap items-center gap-6 text-slate-600 text-sm font-medium">
+            {t.subtitle && (
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl">
+                {t.subtitle}
+              </p>
+            )}
+
+            {/* Badges / Metrics */}
+            <div className="flex flex-wrap items-center gap-6 text-slate-600 text-sm font-medium pt-1">
               <div className="flex items-center gap-2">
                 <div className="p-1.5 rounded-full bg-slate-100 text-slate-700">
                   <ShieldCheck className="w-4 h-4 text-slate-700" />
@@ -73,40 +84,49 @@ export function HeroSection({ lang, onSearch }: HeroSectionProps) {
             </div>
           </div>
 
-          {/* Right Image Collage matching template layout */}
+          {/* Right Image Collage matching template layout with actual fleet cars */}
           <div className="lg:col-span-6">
             <div className="grid grid-cols-2 gap-3.5 h-[340px] sm:h-[380px]">
               {/* Left Column of collage (2 stacked images) */}
               <div className="flex flex-col gap-3.5 h-full">
-                {/* Top: Blue sports car */}
-                <div className="relative flex-1 rounded-2xl overflow-hidden group shadow-sm">
+                {/* Top: Toyota Commuter */}
+                <div className="relative flex-1 rounded-2xl overflow-hidden group shadow-sm bg-slate-100">
                   <img
-                    src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
-                    alt="Blue sports car"
+                    src="/cars/comuter.jpg"
+                    alt="Toyota Commuter VIP Van"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  <span className="absolute bottom-2.5 left-3 text-[11px] font-bold text-white bg-black/50 px-2 py-0.5 rounded-md backdrop-blur-xs">
+                    Toyota Commuter
+                  </span>
                 </div>
 
-                {/* Bottom: Steering wheel & interior */}
-                <div className="relative flex-1 rounded-2xl overflow-hidden group shadow-sm">
+                {/* Bottom: Toyota Fortuner */}
+                <div className="relative flex-1 rounded-2xl overflow-hidden group shadow-sm bg-slate-100">
                   <img
-                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
-                    alt="Car interior cockpit"
+                    src="/cars/fortuner.webp"
+                    alt="Toyota Fortuner SUV"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  <span className="absolute bottom-2.5 left-3 text-[11px] font-bold text-white bg-black/50 px-2 py-0.5 rounded-md backdrop-blur-xs">
+                    Toyota Fortuner
+                  </span>
                 </div>
               </div>
 
-              {/* Right Column: Tall vertical red car image */}
-              <div className="relative h-full rounded-2xl overflow-hidden group shadow-sm">
+              {/* Right Column: Tall vertical Toyota Alphard VIP */}
+              <div className="relative h-full rounded-2xl overflow-hidden group shadow-sm bg-slate-100">
                 <img
-                  src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80"
-                  alt="Red car on road"
+                  src="/cars/alphard.webp"
+                  alt="Toyota Alphard VIP First Class"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
+                <span className="absolute bottom-3 left-3 text-xs font-bold text-white bg-black/60 px-2.5 py-1 rounded-lg backdrop-blur-xs">
+                  Toyota Alphard VIP
+                </span>
               </div>
             </div>
           </div>

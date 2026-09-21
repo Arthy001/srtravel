@@ -22,9 +22,9 @@ export function FAQSection({ lang }: FAQSectionProps) {
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold mb-3 border border-slate-200">
-            <HelpCircle className="w-3.5 h-3.5 text-slate-600" />
-            <span>Got Questions?</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-900 text-xs font-bold mb-3 border border-amber-200">
+            <HelpCircle className="w-3.5 h-3.5 text-amber-600" />
+            <span>Frequently Asked Questions</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             {t.title}
@@ -42,7 +42,7 @@ export function FAQSection({ lang }: FAQSectionProps) {
               <div 
                 key={idx}
                 className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                  isOpen ? "border-indigo-200 bg-indigo-50/20 shadow-sm" : "border-slate-200/80 bg-white hover:border-slate-300"
+                  isOpen ? "border-amber-300 bg-amber-50/30 shadow-xs" : "border-slate-200/80 bg-white hover:border-slate-300"
                 }`}
               >
                 <button
@@ -51,11 +51,11 @@ export function FAQSection({ lang }: FAQSectionProps) {
                   className="w-full py-4 sm:py-5 px-5 sm:px-6 flex items-center justify-between gap-4 text-left font-bold text-sm sm:text-base text-slate-900"
                 >
                   <span className="flex-1">{faq.q}</span>
-                  <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform duration-200 shrink-0 ${isOpen ? "rotate-180 text-indigo-600" : ""}`} />
+                  <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform duration-200 shrink-0 ${isOpen ? "rotate-180 text-amber-600" : ""}`} />
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100/60 animate-in fade-in duration-200">
+                  <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-amber-100/60 animate-in fade-in duration-200">
                     {faq.a}
                   </div>
                 )}
