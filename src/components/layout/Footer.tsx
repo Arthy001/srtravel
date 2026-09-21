@@ -81,14 +81,14 @@ export function Footer({ lang = "th" }: FooterProps) {
             </div>
           </div>
 
-          {/* Column 1: Buy Cars */}
+          {/* Column 1: Fleet */}
           <div className="col-span-1 md:col-span-2 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">{t.col1Title}</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-500">
-              <li><Link href="#listings" className="hover:text-slate-900 transition">{t.col1Item1}</Link></li>
-              <li><Link href="#listings" className="hover:text-slate-900 transition">{t.col1Item2}</Link></li>
-              <li><Link href="#listings" className="hover:text-slate-900 transition">{t.col1Item3}</Link></li>
-              <li><Link href="#listings" className="hover:text-slate-900 transition">{t.col1Item4}</Link></li>
+              <li><a href="#car-type" className="hover:text-slate-900 transition">{t.col1Item1}</a></li>
+              <li><a href="#car-type" className="hover:text-slate-900 transition">{t.col1Item2}</a></li>
+              <li><a href="#car-type" className="hover:text-slate-900 transition">{t.col1Item3}</a></li>
+              <li><a href="#car-type" className="hover:text-slate-900 transition">{t.col1Item4}</a></li>
             </ul>
           </div>
 
@@ -96,10 +96,10 @@ export function Footer({ lang = "th" }: FooterProps) {
           <div className="col-span-1 md:col-span-2 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">{t.col2Title}</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-500">
-              <li><Link href="#listings" className="hover:text-slate-900 transition">{t.col2Item1}</Link></li>
-              <li><Link href="#listings" className="hover:text-slate-900 transition">{t.col2Item2}</Link></li>
-              <li><Link href="#listings" className="hover:text-slate-900 transition">{t.col2Item3}</Link></li>
-              <li><Link href="#listings" className="hover:text-slate-900 transition">{t.col2Item4}</Link></li>
+              <li><a href="#service-model" className="hover:text-slate-900 transition">{t.col2Item1}</a></li>
+              <li><a href="#service-model" className="hover:text-slate-900 transition">{t.col2Item2}</a></li>
+              <li><a href="#service-model" className="hover:text-slate-900 transition">{t.col2Item3}</a></li>
+              <li><a href="#booking" className="hover:text-slate-900 transition">{t.col2Item4}</a></li>
             </ul>
           </div>
 
@@ -107,10 +107,9 @@ export function Footer({ lang = "th" }: FooterProps) {
           <div className="col-span-1 md:col-span-2 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">{t.col3Title}</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-500">
-              <li><Link href="/" className="hover:text-slate-900 transition">{t.col3Item1}</Link></li>
-              <li><Link href="/" className="hover:text-slate-900 transition">{t.col3Item2}</Link></li>
-              <li><Link href="/" className="hover:text-slate-900 transition">{t.col3Item3}</Link></li>
-              <li><Link href="/" className="hover:text-slate-900 transition">{t.col3Item4}</Link></li>
+              <li><a href="#popular-routes" className="hover:text-slate-900 transition">{t.col3Item2}</a></li>
+              <li><a href="#location" className="hover:text-slate-900 transition">{t.col3Item4}</a></li>
+              <li><a href="#booking" className="hover:text-slate-900 transition">{t.col3Item3}</a></li>
             </ul>
           </div>
 
@@ -118,10 +117,9 @@ export function Footer({ lang = "th" }: FooterProps) {
           <div className="col-span-1 md:col-span-2 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">{t.col4Title}</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-500">
-              <li><Link href="/" className="hover:text-slate-900 transition">{t.col4Item1}</Link></li>
-              <li><Link href="/" className="hover:text-slate-900 transition">{t.col4Item2}</Link></li>
-              <li><Link href="/" className="hover:text-slate-900 transition">{t.col4Item3}</Link></li>
-              <li><Link href="/" className="hover:text-slate-900 transition">{t.col4Item4}</Link></li>
+              <li><a href="#faq" className="hover:text-slate-900 transition">{t.col4Item1}</a></li>
+              <li><a href="#review" className="hover:text-slate-900 transition">{t.col4Item4}</a></li>
+              <li><a href="#booking" className="hover:text-slate-900 transition">{t.col4Item2}</a></li>
             </ul>
           </div>
 

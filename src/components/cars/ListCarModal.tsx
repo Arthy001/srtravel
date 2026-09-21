@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { X, CheckCircle } from "lucide-react";
 import { Car, CarCategory, FuelType } from "@/types";
-import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 
 interface ListCarModalProps {
   isOpen: boolean;
@@ -52,18 +51,14 @@ export function ListCarModal({ isOpen, onClose, onCarAdded }: ListCarModalProps)
       distance_airport: "2km from airport branch",
       image_url: imageUrl,
       mileage: mileage,
-      warranty: "1 Year Car4U Warranty",
+      warranty: "1 Year Warranty",
       condition: condition,
       is_favorite: false,
       features: ["Air Conditioning", "Bluetooth Audio", "Smart Key", "1-Owner History"],
-      description: `รถมือสองสภาพสวยคัดพิเศษ ไมล์แท้ ${mileage} ตรวจเช็กสภาพพร้อมใช้งานทันที`,
+      description: `รถสภาพสวยคัดพิเศษ ไมล์แท้ ${mileage} ตรวจเช็กสภาพพร้อมใช้งานทันที`,
     };
 
     try {
-      const supabase = getSupabaseBrowserClient();
-      if (supabase) {
-        await supabase.from("cars").insert([newCar]);
-      }
       onCarAdded(newCar);
       setIsSuccess(true);
       setTimeout(() => {

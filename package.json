@@ -1,12 +1,14 @@
 {
-  "name": "car4rent",
+  "name": "sr-travel",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "pages:build": "next build",
+    "pages:deploy": "wrangler pages deploy out"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

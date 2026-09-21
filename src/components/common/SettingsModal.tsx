@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { X, Database, Palette, ShieldCheck, Check } from "lucide-react";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -36,20 +35,14 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
           <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
             <div className="flex items-center justify-between">
               <span className="font-bold text-slate-900 flex items-center gap-2">
-                <Database className="w-4 h-4 text-indigo-600" /> Database Mode:
+                <Database className="w-4 h-4 text-indigo-600" /> Data Mode:
               </span>
-              <span className={`px-2 py-0.5 rounded-full font-bold text-[10px] ${
-                isSupabaseConfigured
-                  ? "bg-emerald-100 text-emerald-700"
-                  : "bg-amber-100 text-amber-700"
-              }`}>
-                {isSupabaseConfigured ? "Supabase Live Connected" : "Local Mock Dataset Active"}
+              <span className="px-2 py-0.5 rounded-full font-bold text-[10px] bg-emerald-100 text-emerald-700">
+                Frontend Mock Dataset Active
               </span>
             </div>
             <p className="mt-2 text-slate-500 text-[11px] leading-relaxed">
-              {isSupabaseConfigured 
-                ? "Connected to your live Supabase cloud database instance."
-                : "Using high-speed mock data. To connect your Supabase database, set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local"}
+              Using high-speed frontend mock dataset for SR Travel. Ready for Cloudflare Pages deployment.
             </p>
           </div>
 

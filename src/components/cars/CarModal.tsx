@@ -17,7 +17,6 @@ import {
   Banknote
 } from "lucide-react";
 import { Car, TestDriveInquiry } from "@/types";
-import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 
 interface CarModalProps {
   car: Car | null;
@@ -47,36 +46,7 @@ export function CarModal({ car, onClose, onBookingSuccess }: CarModalProps) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const inquiryData: TestDriveInquiry = {
-      car_id: car.id,
-      car_name: car.name,
-      customer_name: customerName,
-      customer_email: customerEmail,
-      customer_phone: customerPhone,
-      preferred_date: preferredDate,
-      payment_method: paymentMethod,
-      down_payment: downPaymentAmount,
-      notes: notes,
-    };
-
     try {
-      const supabase = getSupabaseBrowserClient();
-      if (supabase) {
-        await supabase.from("bookings").insert([{
-          car_id: car.id,
-          car_name: car.name,
-          customer_name: customerName,
-          customer_email: customerEmail,
-          customer_phone: customerPhone,
-          pickup_date: preferredDate,
-          dropoff_date: preferredDate,
-          pickup_location: car.location_address,
-          dropoff_location: car.location_address,
-          total_price: displayPrice,
-          days: 1,
-          notes: `[Used Car Inquiry - ${paymentMethod.toUpperCase()}] Down: $${downPaymentAmount}, Monthly: ~$${estimatedMonthly}. ${notes}`,
-        }]);
-      }
       await new Promise((resolve) => setTimeout(resolve, 600));
       setIsSuccess(true);
       onBookingSuccess?.();
@@ -129,9 +99,9 @@ export function CarModal({ car, onClose, onBookingSuccess }: CarModalProps) {
               <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto animate-in zoom-in-50">
                 <CheckCircle className="w-10 h-10" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900">ส่งคำขอนัดหมายดูรถสำเร็จ!</h3>
+              <h3 className="text-2xl font-bold text-slate-900">ส่งคำขอนัดหมายจองรถสำเร็จ!</h3>
               <p className="text-sm text-slate-600 max-w-md mx-auto">
-                ขอบคุณครับ คุณ <span className="font-semibold text-slate-900">{customerName || "ลูกค้า"}</span> ทางเจ้าหน้าที่ Car4U สาขา <span className="font-semibold text-indigo-600">{car.location_address}</span> จะติดต่อกลับเพื่อนัดหมายเวลาทดลองขับ <span className="font-semibold">{car.name}</span> โดยเร็วที่สุดครับ
+                ขอบคุณครับ คุณ <span className="font-semibold text-slate-900">{customerName || "ลูกค้า"}</span> ทางเจ้าหน้าที่ SR Travel สาขา <span className="font-semibold text-indigo-600">{car.location_address}</span> จะติดต่อกลับเพื่อยืนยันคิวรถ <span className="font-semibold">{car.name}</span> โดยเร็วที่สุดครับ
               </p>
               <div className="pt-4">
                 <button
@@ -184,11 +154,12 @@ export function CarModal({ car, onClose, onBookingSuccess }: CarModalProps) {
                     </div>
                   </div>
 
-                  <div className="flex items-baseline justify-between pt-2 border-t border-slate-100">
-                    <span className="text-xs text-slate-400">ราคาขายเงินสด</span>
+                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                    <span className="text-xs text-slate-500 font-semibold">บริการมาตรฐาน</span>
                     <div className="text-right">
-                      <span className="text-2xl font-black text-slate-900">${displayPrice.toLocaleString()}</span>
-                      <div className="text-xs text-indigo-600 font-bold">ประมาณการผ่อน ~${estimatedMonthly} /เดือน</div>
+                      <span className="text-xs font-bold text-orange-600 bg-orange-50 border border-orange-200 px-3 py-1 rounded-full">
+                        รถเช่าพร้อมคนขับมืออาชีพ
+                      </span>
                     </div>
                   </div>
                 </div>

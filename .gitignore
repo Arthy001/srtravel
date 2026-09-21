@@ -42,3 +42,8 @@ SUPABASE_SETTINGS.md
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# docs to ignore
+PROJECT_MIGRATION_PLAN.md
+CLOUDFLARE_DEPLOYMENT.md
+

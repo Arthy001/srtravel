@@ -116,45 +116,38 @@ export function CarCard({
             </div>
           </div>
 
-          {/* Specs icons row: 4 seats, Auto gearbox, 6 airbags */}
+          {/* Specs icons row: seats, transmission, airbags */}
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-600 font-medium">
             <div className="flex items-center gap-1.5">
               <Users className="w-3.5 h-3.5 text-slate-400" />
-              <span>{car.seats} seats</span>
+              <span>{car.seats} ที่นั่ง</span>
             </div>
 
             <div className="flex items-center gap-1.5">
-              {isElectric ? (
-                <Zap className="w-3.5 h-3.5 text-amber-500" />
-              ) : (
-                <Cog className="w-3.5 h-3.5 text-slate-400" />
-              )}
+              <Cog className="w-3.5 h-3.5 text-slate-400" />
               <span>{car.transmission}</span>
             </div>
 
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-slate-400" />
-              <span>{car.airbags} airbags</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <span>ประกันชั้น 1</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom details: Mileage + Used Car Price & Installment */}
+        {/* Bottom details: Capacity + Direct Book Action (No Price) */}
         <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
           <div className="text-xs text-slate-500 font-semibold flex items-center gap-1">
-            <Gauge className="w-3.5 h-3.5 text-slate-400" />
-            <span>{car.mileage || "ไมล์แท้"}</span>
+            <span className="px-2.5 py-1 rounded-full bg-orange-50 text-orange-950 font-bold text-[11px] border border-orange-100">
+              {car.mileage || "พร้อมให้บริการ"}
+            </span>
           </div>
 
-          <div className="text-right">
-            <div className="flex items-baseline justify-end gap-1">
-              <span className="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight">
-                {formattedPrice}
-              </span>
-            </div>
-            <div className="text-[11px] text-indigo-600 font-bold">
-              {lang === "th" ? `ผ่อน ${formattedMonthly}` : `Starts ${formattedMonthly}`}
-            </div>
+          <div>
+            <span className="inline-flex items-center gap-1 px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs shadow-sm transition">
+              <span>จองรถรุ่นนี้</span>
+              <span>&rarr;</span>
+            </span>
           </div>
         </div>
 

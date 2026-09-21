@@ -16,12 +16,12 @@ const notoSansThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  title: "Car4U - ตลาดซื้อขายรถมือสองคุณภาพดี คัดเกรดพรีเมียม | Certified Used Cars",
-  description: "ค้นหาและซื้อขายรถมือสองคุณภาพ ตรวจเช็กสภาพ 200+ จุด การันตีไมล์แท้ ไม่เคยชนหนัก พร้อมบริการจัดไฟแนนซ์และทดลองขับ",
+  title: "SR Travel - บริการรถเช่าท่องเที่ยว และการเดินทางครบวงจร | Premium Car Rental & Travel",
+  description: "บริการเช่ารถท่องเที่ยว เส้นทางยอดนิยม รถเช่าขับเอง รถพร้อมคนขับ และบริการรับส่งสนามบิน พร้อมการดูแลระดับพรีเมียม",
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
-    apple: "/icon.svg",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/logo.png",
   },
 };
 
