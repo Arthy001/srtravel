@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HelpCircle, ChevronDown } from "lucide-react";
 import { Language, translations } from "@/lib/i18n/translations";
+import { getFaqsFromSanity } from "@/sanity/queries";
 
 interface FAQSectionProps {
   lang: Language;
@@ -10,7 +11,18 @@ interface FAQSectionProps {
 
 export function FAQSection({ lang }: FAQSectionProps) {
   const t = translations[lang].faqSection;
+  const [faqs, setFaqs] = useState<{ q: string; a: string }[]>(t.faqs);
   const [openIdx, setOpenIdx] = useState<number | null>(0);
+
+  useEffect(() => {
+    async function loadFaqs() {
+      const sanityFaqs = await getFaqsFromSanity();
+      if (sanityFaqs && sanityFaqs.length > 0) {
+        setFaqs(sanityFaqs);
+      }
+    }
+    loadFaqs();
+  }, [lang]);
 
   const toggle = (idx: number) => {
     setOpenIdx(openIdx === idx ? null : idx);
@@ -36,7 +48,7 @@ export function FAQSection({ lang }: FAQSectionProps) {
 
         {/* FAQ Accordion List */}
         <div className="space-y-3.5">
-          {t.faqs.map((faq, idx) => {
+          {faqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
               <div 

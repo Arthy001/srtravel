@@ -19,6 +19,7 @@ import CarModal from "@/components/cars/CarModal";
 import ListCarModal from "@/components/cars/ListCarModal";
 import SettingsModal from "@/components/common/SettingsModal";
 import { initialCarsData } from "@/lib/data/mockCars";
+import { getCarsFromSanity } from "@/sanity/queries";
 import { Car, FilterState } from "@/types";
 import { Language } from "@/lib/i18n/translations";
 
@@ -26,10 +27,23 @@ export default function HomePage() {
   // Language state (defaults to Thai)
   const [lang, setLang] = useState<Language>("th");
 
-  // Cars data state (Frontend Mock Data)
+  // Cars data state (Sanity CMS with local fallback)
   const [cars, setCars] = useState<Car[]>(initialCarsData);
-  const [favorites, setFavorites] = useState<string[]>(["car-sedan-1", "car-suv-1", "car-van-1"]);
+  const [favorites, setFavorites] = useState<string[]>(["car-toyota-altis", "car-toyota-camry", "car-toyota-fortuner"]);
   const [loading, setLoading] = useState(false);
+
+  // Load cars from Sanity CMS
+  useEffect(() => {
+    async function fetchCars() {
+      setLoading(true);
+      const sanityCars = await getCarsFromSanity();
+      if (sanityCars && sanityCars.length > 0) {
+        setCars(sanityCars);
+      }
+      setLoading(false);
+    }
+    fetchCars();
+  }, []);
 
   // UI state
   const [selectedCar, setSelectedCar] = useState<Car | null>(null);

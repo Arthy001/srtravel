@@ -1,91 +1,113 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Star, ShieldCheck, Heart, Sparkles, X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { Star, ShieldCheck, Heart, Sparkles, X, ChevronLeft, ChevronRight, ZoomIn, Calendar } from "lucide-react";
 import { Language, translations } from "@/lib/i18n/translations";
+import { getReviewsFromSanity } from "@/sanity/queries";
 
 interface ReviewSectionProps {
   lang: Language;
 }
 
 interface ReviewItem {
-  id: number;
+  id: string | number;
   image: string;
   title: string;
   tag: string;
   comment: string;
+  tripDate?: string;
 }
 
-const reviewList: ReviewItem[] = [
+const defaultReviews: ReviewItem[] = [
   {
-    id: 1,
+    id: "1",
     image: "/review1.jpg",
     title: "ทริปครอบครัว & ท่องเที่ยว",
     tag: "ครอบครัว / กรุ๊ปทัวร์",
     comment: "รถสะอาดมาก กว้างขวาง นั่งสบายตลอดเส้นทาง คนขับบริการสุภาพ ประทับใจมากครับ",
+    tripDate: "2026-09-20",
   },
   {
-    id: 2,
+    id: "2",
     image: "/review2.jpg",
     title: "รับ-ส่งสนามบินสุวรรณภูมิ",
     tag: "Airport Transfer",
     comment: "มารอรับตรงเวลา ยกกระเป๋าให้อย่างดี เดินทางถึงจุดหมายอย่างปลอดภัย หายห่วงเลยค่ะ",
+    tripDate: "2026-09-18",
   },
   {
-    id: 3,
+    id: "3",
     image: "/review3.jpg",
     title: "บริการพาเที่ยวทั่วไทย",
     tag: "ท่องเที่ยวต่างจังหวัด",
     comment: "คนขับชำนาญเส้นทาง แนะนำจุดแวะพักและร้านอาหารดีๆ ตลอดทริป แนะนำเลยครับ",
+    tripDate: "2026-09-15",
   },
   {
-    id: 4,
+    id: "4",
     image: "/review4.jpg",
     title: "ทริปงานสัมมนา & ลูกค้าองค์กร",
-    tag: "Business / Corporate",
+    tag: "Corporate & Business",
     comment: "ตรงต่อเวลา บริการระดับมืออาชีพ รถใหม่ แอร์เย็นสบาย เหมาะกับงานต้อนรับแขกสำคัญ",
+    tripDate: "2026-09-12",
   },
   {
-    id: 5,
+    id: "5",
     image: "/review5.jpg",
     title: "รับส่งสนามบินกรุ๊ปทัวร์",
-    tag: "Airport Pickup",
+    tag: "Airport Transfer",
     comment: "นัดหมายง่าย แอดมินตอบไว คนขับสุภาพขับขี่ปลอดภัย ไม่ผิดหวังที่เลือก SR Travel ครับ",
+    tripDate: "2026-09-10",
   },
   {
-    id: 6,
+    id: "6",
     image: "/review6.jpg",
     title: "ทริปพักผ่อน พัทยา - ชลบุรี",
-    tag: "ทัวร์ทะเล / พักผ่อน",
+    tag: "ครอบครัว / กรุ๊ปทัวร์",
     comment: "เดินทางกันเป็นแก๊งเพื่อน สบายใจมาก รถนั่งสบาย แวะถ่ายรูปได้ตามต้องการ บริการเป็นกันเอง",
+    tripDate: "2026-09-08",
   },
   {
-    id: 7,
+    id: "7",
     image: "/review7.jpg",
     title: "เดินทางปลอดภัยทุกเส้นทาง",
     tag: "เดินทางต่างจังหวัด",
     comment: "ขับรถนุ่มนวล ปลอดภัย ไม่ซิ่ง ดูแลผู้โดยสารเป็นอย่างดี มีโอกาสจะใช้บริการอีกแน่นอนค่ะ",
+    tripDate: "2026-09-05",
   },
   {
-    id: 8,
+    id: "8",
     image: "/review8.jpg",
     title: "บริการสุภาพ เป็นมิตร",
-    tag: "Private Chauffeur",
+    tag: "VIP Service",
     comment: "ประทับใจความเอาใจใส่ พนักงานขับรถแต่งกายเรียบร้อย มีมารยาทดีมาก ให้ 5 ดาวเลยครับ",
+    tripDate: "2026-09-02",
   },
   {
-    id: 9,
+    id: "9",
     image: "/review9.jpg",
     title: "ลูกค้าประจำ ไว้วางใจทุกทริป",
     tag: "VIP Service",
     comment: "ใช้บริการ SR Travel ประจำ เดินทางสะดวก ไม่ต้องเหนื่อยขับเอง ถึงที่หมายตรงเวลาเสมอ",
+    tripDate: "2026-08-28",
   },
 ];
 
 export function ReviewSection({ lang }: ReviewSectionProps) {
   const t = translations[lang].reviewSection;
+  const [reviews, setReviews] = useState<ReviewItem[]>(defaultReviews);
   const [selectedImgIndex, setSelectedImgIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    async function loadReviews() {
+      const sanityReviews = await getReviewsFromSanity();
+      if (sanityReviews && sanityReviews.length > 0) {
+        setReviews(sanityReviews);
+      }
+    }
+    loadReviews();
+  }, []);
 
   const handleOpenLightbox = (index: number) => {
     setSelectedImgIndex(index);
@@ -98,14 +120,14 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedImgIndex !== null) {
-      setSelectedImgIndex((prev) => (prev! === 0 ? reviewList.length - 1 : prev! - 1));
+      setSelectedImgIndex((prev) => (prev! === 0 ? reviews.length - 1 : prev! - 1));
     }
   };
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedImgIndex !== null) {
-      setSelectedImgIndex((prev) => (prev! === reviewList.length - 1 ? 0 : prev! + 1));
+      setSelectedImgIndex((prev) => (prev! === reviews.length - 1 ? 0 : prev! + 1));
     }
   };
 
@@ -148,9 +170,9 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
           </div>
         </div>
 
-        {/* Reviews Photo Grid (review1 - review9) */}
+        {/* Reviews Photo Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {reviewList.map((item, idx) => (
+          {reviews.map((item, idx) => (
             <div
               key={item.id}
               onClick={() => handleOpenLightbox(idx)}
@@ -191,19 +213,29 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
               {/* Review Text Content */}
               <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-bold text-base sm:text-lg text-slate-900 group-hover:text-amber-600 transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    &ldquo;{item.comment}&rdquo;
-                  </p>
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="font-bold text-base sm:text-lg text-slate-900 group-hover:text-amber-600 transition-colors">
+                      {item.title}
+                    </h3>
+                    {item.tripDate && (
+                      <span className="text-[11px] text-slate-400 whitespace-nowrap flex items-center gap-1">
+                        <Calendar className="w-3 h-3 text-slate-400" />
+                        {item.tripDate}
+                      </span>
+                    )}
+                  </div>
+                  {item.comment && (
+                    <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      &ldquo;{item.comment}&rdquo;
+                    </p>
+                  )}
                 </div>
 
                 <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                   <span className="font-medium text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full">
                     ✓ ยืนยันผู้ใช้บริการจริง
                   </span>
-                  <span className="text-[11px] text-slate-400">SR Travel Review</span>
+                  <span className="text-[11px] text-slate-400">SR Travel Showcase</span>
                 </div>
               </div>
             </div>
@@ -231,7 +263,7 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
       </div>
 
       {/* Lightbox Modal */}
-      {selectedImgIndex !== null && (
+      {selectedImgIndex !== null && reviews[selectedImgIndex] && (
         <div 
           className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
           onClick={handleCloseLightbox}
@@ -270,8 +302,8 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
           >
             <div className="relative w-full max-w-3xl h-[60vh] sm:h-[70vh] rounded-2xl overflow-hidden shadow-2xl bg-black">
               <Image
-                src={reviewList[selectedImgIndex].image}
-                alt={reviewList[selectedImgIndex].title}
+                src={reviews[selectedImgIndex].image}
+                alt={reviews[selectedImgIndex].title}
                 fill
                 className="object-contain"
                 priority
@@ -279,15 +311,24 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
             </div>
             
             <div className="mt-4 text-center text-white max-w-xl px-4">
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-slate-950 mb-2">
-                {reviewList[selectedImgIndex].tag}
-              </span>
-              <h4 className="text-lg font-bold">{reviewList[selectedImgIndex].title}</h4>
-              <p className="text-sm text-slate-300 mt-1 italic">
-                &ldquo;{reviewList[selectedImgIndex].comment}&rdquo;
-              </p>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-slate-950">
+                  {reviews[selectedImgIndex].tag}
+                </span>
+                {reviews[selectedImgIndex].tripDate && (
+                  <span className="text-xs text-slate-300">
+                    {reviews[selectedImgIndex].tripDate}
+                  </span>
+                )}
+              </div>
+              <h4 className="text-lg font-bold">{reviews[selectedImgIndex].title}</h4>
+              {reviews[selectedImgIndex].comment && (
+                <p className="text-sm text-slate-300 mt-1 italic">
+                  &ldquo;{reviews[selectedImgIndex].comment}&rdquo;
+                </p>
+              )}
               <div className="mt-2 text-xs text-slate-400">
-                ภาพที่ {selectedImgIndex + 1} จาก {reviewList.length}
+                ภาพที่ {selectedImgIndex + 1} จาก {reviews.length}
               </div>
             </div>
           </div>

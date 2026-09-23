@@ -132,35 +132,16 @@ export function HeroSection({ lang, onSearch }: HeroSectionProps) {
           </div>
         </div>
 
-        {/* Floating Search Bar Card matching Mockup Image 3 (Pixel-for-Pixel) */}
-        <div className="relative -mt-16 sm:-mt-24 lg:-mt-32 z-20">
-          <div className="bg-white rounded-t-[24px] rounded-b-[48px] px-6 sm:px-8 pt-5 sm:pt-6 pb-6 sm:pb-7 shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-slate-100 max-w-5xl mx-auto">
+        {/* Search Bar Card - Positioned nicely below Hero without overlapping photos */}
+        <div className="relative mt-8 sm:mt-10 lg:mt-12 z-20">
+          <div className="bg-white rounded-3xl sm:rounded-[36px] px-6 sm:px-8 py-6 sm:py-7 shadow-[0_12px_40px_rgba(0,0,0,0.08)] border border-slate-100 max-w-5xl mx-auto">
             
-            {/* Top Toggle Switcher */}
+            {/* Top Tag / Button */}
             <div className="flex items-center gap-2.5 mb-4">
-              <button
-                type="button"
-                onClick={() => setIsDifferentDropoff(true)}
-                className={`px-4 sm:px-5 py-2 rounded-full text-[13px] font-semibold transition-all duration-200 ${
-                  isDifferentDropoff
-                    ? "bg-black text-white shadow-sm"
-                    : "bg-white text-slate-700 border border-slate-200 hover:border-slate-300"
-                }`}
-              >
-                {t.tabAll}
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setIsDifferentDropoff(false)}
-                className={`px-4 sm:px-5 py-2 rounded-full text-[13px] font-semibold transition-all duration-200 ${
-                  !isDifferentDropoff
-                    ? "bg-black text-white shadow-sm"
-                    : "bg-white text-slate-700 border border-slate-200 hover:border-slate-300"
-                }`}
-              >
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold bg-black text-white shadow-xs">
+                <Car className="w-3.5 h-3.5 text-amber-400" />
                 {t.tabCertified}
-              </button>
+              </span>
             </div>
 
             {/* Subtle Divider Line */}
