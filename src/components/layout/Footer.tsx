@@ -14,14 +14,14 @@ export function Footer({ lang = "th" }: FooterProps) {
     <footer className="bg-white border-t border-slate-100 pt-16 pb-12 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Main Grid: 5 columns (Brand + 4 link columns) */}
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-8 lg:gap-12 pb-14">
+        {/* Main Grid: Brand + 3 link columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 lg:gap-12 pb-14">
           
           {/* Brand Info & Socials */}
-          <div className="col-span-2 md:col-span-4 space-y-5">
+          <div className="col-span-1 sm:col-span-2 md:col-span-5 space-y-5">
             <Logo size="md" />
 
-            <p className="text-xs sm:text-sm text-slate-500 max-w-xs leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-500 max-w-sm leading-relaxed">
               {t.desc}
             </p>
 
@@ -81,29 +81,16 @@ export function Footer({ lang = "th" }: FooterProps) {
             </div>
           </div>
 
-          {/* Column 1: Fleet */}
-          <div className="col-span-1 md:col-span-2 space-y-3">
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">{t.col1Title}</h4>
-            <ul className="space-y-2 text-xs sm:text-sm text-slate-500">
-              <li><a href="#car-type" className="hover:text-slate-900 transition">{t.col1Item1}</a></li>
-              <li><a href="#car-type" className="hover:text-slate-900 transition">{t.col1Item2}</a></li>
-              <li><a href="#car-type" className="hover:text-slate-900 transition">{t.col1Item3}</a></li>
-              <li><a href="#car-type" className="hover:text-slate-900 transition">{t.col1Item4}</a></li>
-            </ul>
-          </div>
-
-          {/* Column 2: Services */}
-          <div className="col-span-1 md:col-span-2 space-y-3">
+          {/* Column 1: Services */}
+          <div className="col-span-1 md:col-span-2 md:col-start-7 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">{t.col2Title}</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-500">
-              <li><a href="#service-model" className="hover:text-slate-900 transition">{t.col2Item1}</a></li>
               <li><a href="#service-model" className="hover:text-slate-900 transition">{t.col2Item2}</a></li>
               <li><a href="#service-model" className="hover:text-slate-900 transition">{t.col2Item3}</a></li>
-              <li><a href="#booking" className="hover:text-slate-900 transition">{t.col2Item4}</a></li>
             </ul>
           </div>
 
-          {/* Column 3: Company */}
+          {/* Column 2: Company */}
           <div className="col-span-1 md:col-span-2 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">{t.col3Title}</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-500">
@@ -113,8 +100,8 @@ export function Footer({ lang = "th" }: FooterProps) {
             </ul>
           </div>
 
-          {/* Column 4: Support */}
-          <div className="col-span-1 md:col-span-2 space-y-3">
+          {/* Column 3: Support */}
+          <div className="col-span-1 md:col-span-3 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">{t.col4Title}</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-500">
               <li><a href="#faq" className="hover:text-slate-900 transition">{t.col4Item1}</a></li>

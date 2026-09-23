@@ -125,27 +125,18 @@ export function Navbar({
             })}
           </nav>
 
-          {/* Right Controls: Language & Contact */}
+          {/* Right Controls: Language Switcher */}
           <div className="hidden sm:flex items-center gap-3">
             {/* Language Switcher */}
             <button
               type="button"
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 text-slate-700 hover:text-slate-900 px-3 py-1.5 rounded-full border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition text-xs font-bold"
+              className="flex items-center gap-1.5 text-slate-700 hover:text-slate-900 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition text-xs font-bold"
               aria-label="Change language"
             >
               <Globe className="w-3.5 h-3.5 text-slate-500" />
               <span>{lang === "th" ? "TH" : "EN"}</span>
             </button>
-
-            {/* Quick Call / Booking CTA */}
-            <a
-              href="#booking"
-              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-full transition shadow-xs"
-            >
-              <Calendar className="w-3.5 h-3.5 text-amber-400" />
-              <span>{t.booking}</span>
-            </a>
           </div>
 
           {/* Mobile Hamburger Button */}

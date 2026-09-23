@@ -18,6 +18,7 @@ import Footer from "@/components/layout/Footer";
 import CarModal from "@/components/cars/CarModal";
 import ListCarModal from "@/components/cars/ListCarModal";
 import SettingsModal from "@/components/common/SettingsModal";
+import ScrollToTop from "@/components/common/ScrollToTop";
 import { initialCarsData } from "@/lib/data/mockCars";
 import { getCarsFromSanity } from "@/sanity/queries";
 import { Car, FilterState } from "@/types";
@@ -294,6 +295,9 @@ export default function HomePage() {
         isOpen={showSettingsModal}
         onClose={() => setShowSettingsModal(false)}
       />
+
+      {/* Floating Slide/Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   );
 }
