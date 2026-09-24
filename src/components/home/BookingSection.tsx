@@ -20,9 +20,10 @@ import { CONTACT_INFO } from "@/lib/constants/contact";
 
 interface BookingSectionProps {
   lang: Language;
+  selectedCarModel?: string;
 }
 
-export function BookingSection({ lang }: BookingSectionProps) {
+export function BookingSection({ lang, selectedCarModel }: BookingSectionProps) {
   const t = translations[lang].bookingSection;
   const isTh = lang === "th";
   
@@ -42,6 +43,16 @@ export function BookingSection({ lang }: BookingSectionProps) {
     phone: "",
     lineId: ""
   });
+
+  // Sync selected car model from Car Type section
+  React.useEffect(() => {
+    if (selectedCarModel) {
+      setFormData((prev) => ({
+        ...prev,
+        carType: selectedCarModel,
+      }));
+    }
+  }, [selectedCarModel]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

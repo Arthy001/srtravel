@@ -12,6 +12,7 @@ interface CarGridProps {
   favorites: string[];
   onToggleFavorite: (carId: string) => void;
   onSelectCar: (car: Car) => void;
+  onBookCar?: (car: Car) => void;
   onResetFilters: () => void;
   lang?: Language;
 }
@@ -21,6 +22,7 @@ export function CarGrid({
   favorites,
   onToggleFavorite,
   onSelectCar,
+  onBookCar,
   onResetFilters,
   lang = "th",
 }: CarGridProps) {
@@ -56,6 +58,7 @@ export function CarGrid({
           isFavorite={favorites.includes(car.id)}
           onToggleFavorite={onToggleFavorite}
           onSelectCar={onSelectCar}
+          onBookCar={onBookCar}
           lang={lang}
         />
       ))}

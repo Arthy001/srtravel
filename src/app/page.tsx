@@ -48,6 +48,7 @@ export default function HomePage() {
 
   // UI state
   const [selectedCar, setSelectedCar] = useState<Car | null>(null);
+  const [selectedCarModel, setSelectedCarModel] = useState<string>("");
   const [showMap, setShowMap] = useState(false);
   const [showListCarModal, setShowListCarModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
@@ -171,6 +172,35 @@ export default function HomePage() {
     setCars((prev) => [newCar, ...prev]);
   };
 
+  // Handle "จองรถรุ่นนี้" click from Car Type section
+  const handleBookCar = (car: Car) => {
+    // Map car name or id to matching select option in BookingSection
+    let mappedOption = "Toyota Corolla Altis (Sedan • 1-3 ที่นั่ง)";
+    if (car.id.includes("altis") || car.name.toLowerCase().includes("altis")) {
+      mappedOption = "Toyota Corolla Altis (Sedan • 1-3 ที่นั่ง)";
+    } else if (car.id.includes("camry") || car.name.toLowerCase().includes("camry")) {
+      mappedOption = "Toyota Camry (Sedan VIP • 1-4 ที่นั่ง)";
+    } else if (car.id.includes("fortuner") || car.name.toLowerCase().includes("fortuner")) {
+      mappedOption = "Toyota Fortuner (SUV • 1-5 ที่นั่ง ยอดนิยม)";
+    } else if (car.id.includes("mux") || car.name.toLowerCase().includes("mu-x")) {
+      mappedOption = "Isuzu MU-X (SUV • 1-5 ที่นั่ง สัมภาระเยอะ)";
+    } else if (car.id.includes("commuter") || car.name.toLowerCase().includes("commuter")) {
+      mappedOption = "Toyota Commuter (Van • 5-10 ที่นั่ง เดินทางกลุ่ม)";
+    } else if (car.id.includes("alphard") || car.name.toLowerCase().includes("alphard")) {
+      mappedOption = "Toyota Alphard VIP (First Class • 1-5 ที่นั่ง)";
+    } else {
+      mappedOption = `${car.name} (${car.category})`;
+    }
+
+    setSelectedCarModel(mappedOption);
+
+    // Smooth scroll down to #booking section
+    const bookingEl = document.getElementById("booking");
+    if (bookingEl) {
+      bookingEl.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const handleResetFilters = () => {
     setFilters({
       searchTerm: "",
@@ -249,6 +279,7 @@ export default function HomePage() {
           favorites={favorites}
           onToggleFavorite={handleToggleFavorite}
           onSelectCar={(car) => setSelectedCar(car)}
+          onBookCar={handleBookCar}
           onResetFilters={handleResetFilters}
           lang={lang}
         />
@@ -262,7 +293,10 @@ export default function HomePage() {
       </section>
 
       {/* 6. Booking Section */}
-      <BookingSection lang={lang} />
+      <BookingSection 
+        lang={lang} 
+        selectedCarModel={selectedCarModel}
+      />
 
       {/* 7. Location Section */}
       <LocationSection lang={lang} />

@@ -188,10 +188,10 @@ export function PopularRoutesSection({ lang }: PopularRoutesSectionProps) {
           </div>
         </div>
 
-        {/* Large Banner Image ต่อท้ายข้อความ (routes.png) */}
+        {/* Large Banner Image ต่อท้ายข้อความ (routes.webp) */}
         <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-orange-200 bg-slate-900 group">
           <img 
-            src="/routes.png" 
+            src="/routes.webp" 
             alt="เส้นทาง สนามบินสุวรรณภูมิ - นครราชสีมา (โคราช) SR Travel" 
             className="w-full h-auto object-cover group-hover:scale-[1.01] transition-transform duration-500"
           />

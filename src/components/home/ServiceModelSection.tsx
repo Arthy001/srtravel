@@ -54,11 +54,11 @@ export function ServiceModelSection({ lang }: ServiceModelSectionProps) {
         {/* 2-Column Content Layout matching user image */}
         <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-xl shadow-slate-200/40 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left: Image (servicemodels.jpg) */}
+          {/* Left: Image (servicemodels.webp) */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-200/80 max-w-md w-full group bg-orange-50">
               <img 
-                src="/servicemodels.jpg" 
+                src="/servicemodels.webp" 
                 alt="เช่ารถพร้อมคนขับทั่วไทย SR Travel and Transfer" 
                 className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
               />

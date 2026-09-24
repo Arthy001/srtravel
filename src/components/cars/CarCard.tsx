@@ -22,6 +22,7 @@ interface CarCardProps {
   isFavorite: boolean;
   onToggleFavorite: (carId: string) => void;
   onSelectCar?: (car: Car) => void;
+  onBookCar?: (car: Car) => void;
   lang?: Language;
 }
 
@@ -29,6 +30,8 @@ export function CarCard({
   car,
   isFavorite,
   onToggleFavorite,
+  onSelectCar,
+  onBookCar,
   lang = "th",
 }: CarCardProps) {
   const isElectric = car.fuel_type === "Electric" || car.category === "EV";
@@ -144,10 +147,25 @@ export function CarCard({
           </div>
 
           <div>
-            <span className="inline-flex items-center gap-1 px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs shadow-sm transition">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (onBookCar) {
+                  onBookCar(car);
+                } else {
+                  const bookingEl = document.getElementById("booking");
+                  if (bookingEl) {
+                    bookingEl.scrollIntoView({ behavior: "smooth" });
+                  }
+                }
+              }}
+              className="inline-flex items-center gap-1 px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 active:scale-95 text-white font-bold text-xs shadow-sm transition"
+            >
               <span>จองรถรุ่นนี้</span>
               <span>&rarr;</span>
-            </span>
+            </button>
           </div>
         </div>
 
