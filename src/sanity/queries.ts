@@ -130,3 +130,55 @@ export async function getFaqsFromSanity(): Promise<{ q: string; a: string }[]> {
     return []
   }
 }
+
+export interface ServicesSectionData {
+  badge?: string
+  title?: string
+  subtitle?: string
+  slogan?: string
+  bannerImageUrl?: string
+  rateImageUrl?: string
+  guaranteeBadge?: string
+  guaranteeTitle?: string
+  guaranteeDesc?: string
+  phone1?: string
+  phone2?: string
+  facebookUrl?: string
+  whatsappUrl?: string
+  lineUrl?: string
+}
+
+// Fetch Services Section Data from Sanity
+export async function getServicesSectionFromSanity(): Promise<ServicesSectionData | null> {
+  try {
+    const query = `*[_type == "servicesSection"][0]`
+    const doc = await client.fetch<any>(query)
+
+    if (!doc) {
+      return null
+    }
+
+    return {
+      badge: doc.badge,
+      title: doc.title,
+      subtitle: doc.subtitle,
+      slogan: doc.slogan,
+      bannerImageUrl: doc.bannerImage ? urlFor(doc.bannerImage).width(1400).url() : undefined,
+      rateImageUrl: doc.rateImage ? urlFor(doc.rateImage).width(1400).url() : undefined,
+      guaranteeBadge: doc.guaranteeBadge,
+      guaranteeTitle: doc.guaranteeTitle,
+      guaranteeDesc: doc.guaranteeDesc,
+      phone1: doc.phone1,
+      phone2: doc.phone2,
+      facebookUrl: doc.facebookUrl,
+      whatsappUrl: doc.whatsappUrl,
+      lineUrl: doc.lineUrl,
+    }
+  } catch (error) {
+    console.warn('Sanity getServicesSection error:', error)
+    return null
+  }
+}
+
+
+

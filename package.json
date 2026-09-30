@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "pages:build": "next build",
-    "pages:deploy": "wrangler pages deploy out"
+    "pages:deploy": "wrangler pages deploy out --project-name sr-travel"
   },
   "dependencies": {
     "@sanity/image-url": "^2.1.1",

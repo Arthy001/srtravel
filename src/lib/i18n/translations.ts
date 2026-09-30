@@ -3,14 +3,14 @@ export type Language = "th" | "en";
 export const translations = {
   th: {
     nav: {
-      services: "บริการของเรา Service Type",
+      services: "บริการของเรา",
       popularRoutes: "เส้นทางยอดนิยม 🚗",
-      serviceModel: "Service Model",
-      carType: "Car Type",
-      booking: "Booking",
-      location: "Location",
-      review: "Review",
-      faq: "FAQ ?",
+      serviceModel: "รูปแบบบริการ",
+      carType: "ประเภทรถ",
+      booking: "จองรถออนไลน์",
+      location: "จุดบริการ",
+      review: "รีวิวลูกค้า",
+      faq: "คำถามที่พบบ่อย",
       categories: "ประเภทรถทั้งหมด",
       sedan: "รถเก๋ง (Sedan / Hatchback)",
       ev: "รถยนต์ไฟฟ้า (Electric EV)",
@@ -33,78 +33,141 @@ export const translations = {
       priceInstallment: "ระยะเวลา / วันเดินทาง",
       placeholderPrice: "เลือกวันเดินทาง",
     },
+    servicesSection: {
+      badge: "บริการของเรา • Service Type",
+      title: "SR Travel and Transfer",
+      subtitle: "บริการรถเช่าพร้อมคนขับโคราช ทั่วไทย 24 ชั่วโมง / หารถรับส่งด่วน",
+      slogan: "“ทุกเส้นทางของคุณ เราพร้อมดูแล”",
+      rateAlt: "อัตราค่าบริการ SR Travel and Transfer",
+      bannerAlt: "บริการรถเช่าพร้อมคนขับ SR Travel and Transfer",
+      bookBtn: "จองคิวรถ",
+      callBtn: "โทรด่วน",
+      guaranteeBadge: "ปลอดภัย 100% • ตรงเวลา • บริการด้วยใจ",
+      guaranteeTitle: "เดินทางเมื่อไหร่ มั่นใจ ให้เรา...ดูแลคุณ",
+      guaranteeDesc: "ติดต่อสอบถาม / จองรถได้ตลอด 24 ชั่วโมง พร้อมคนขับมืออาชีพ",
+      bookOnlineBtn: "จองรถออนไลน์",
+      services: [
+        {
+          title: "รับ–ส่งสนามบิน",
+          desc: "สุวรรณภูมิ ดอนเมือง ฯลฯ ตรงเวลา ปลอดภัย คอยเที่ยวบินดีเลย์",
+          badge: "บินสบาย ไม่ตกรถ"
+        },
+        {
+          title: "พาเที่ยวทั่วไทย",
+          desc: "ทริปครอบครัว ท่องเที่ยวเขาใหญ่ ทะเล ภูเขา หรือทัวร์ไหว้พระตามสั่ง",
+          badge: "ทริปท่องเที่ยว"
+        },
+        {
+          title: "เดินทางในกรุงเทพและต่างจังหวัด",
+          desc: "เดินทางติดต่อธุรกิจ สัมมนา งานอีเวนต์ หรือทำธุระส่วนตัว ทั่วทุกจังหวัด",
+          badge: "โคราช - ทั่วไทย"
+        },
+        {
+          title: "หารถรับส่งด่วน 24 ชั่วโมง",
+          desc: "ต้องการรถเร่งด่วน พร้อมจัดหารถและคนขับมืออาชีพบริการทันที",
+          badge: "บริการด่วน 24 ชม."
+        }
+      ]
+    },
     popularRoutes: {
-      title: "เส้นทางยอดนิยม 🚗",
-      subtitle: "สถานที่ท่องเที่ยวยอดฮิตพร้อมรถเช่าขับเอง หรือพร้อมคนขับมืออาชีพ",
+      badge: "Popular Routes 🚗",
+      title: "เส้นทางยอดนิยม (Popular routes) 🚗",
+      subtitle: "บริการรถรับ–ส่งจากสนามบินสุวรรณภูมิ มุ่งสู่จุดหมายปลายทางทั่วไทย ปลอดภัย ตรงเวลา ถึงที่หมายอย่างสบายใจ",
+      distanceLabel: "ระยะทาง",
+      timeLabel: "เวลา",
+      bookRouteBtn: "จองรถเส้นทางนี้",
+      otherRoutesBadge: "เส้นทางอื่นๆ ทั่วไทย",
+      otherRoutesTitle: "ต้องการเดินทางเส้นทางอื่น?",
+      otherRoutesDesc: "SR Travel พร้อมให้บริการเดินทางทั่วประเทศไทย ทั้งรถเก๋ง รถ SUV และรถตู้ VIP สอบถามราคาเหมาได้ทันที",
+      callQuickBtn: "โทรด่วน 086-724-0454",
+      inquiryBtn: "กรอกฟอร์มขอราคา",
       routes: [
         {
-          id: "route-1",
-          name: "กรุงเทพฯ - พัทยา / เกาะล้าน",
-          duration: "1 - 3 วัน",
-          distance: "150 กม.",
-          priceStarting: "890",
-          tag: "ยอดนิยมอันดับ 1",
-          image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-          highlight: "ขับรถเลียบหาด เช็กอินคาเฟ่ริมทะเล ชิลล์วันหยุดสุดสัปดาห์"
+          id: "korat",
+          from: "สนามบินสุวรรณภูมิ (BKK)",
+          to: "โคราช (Korat / นครราชสีมา)",
+          distance: "250 กม.",
+          time: "3 - 4 ชม.",
+          highlight: "เดินทางสบาย ปลอดภัย ถึงที่หมายตรงเวลา ส่งตรงถึงหน้าบ้านหรือโรงแรม",
+          tag: "เส้นทางยอดนิยมอันดับ 1",
+          badgeColor: "bg-orange-100 text-orange-950 border-orange-200"
         },
         {
-          id: "route-2",
-          name: "กรุงเทพฯ - หัวหิน / ปราณบุรี",
-          duration: "2 - 3 วัน",
-          distance: "200 กม.",
-          priceStarting: "990",
-          tag: "ครอบครัว & พักผ่อน",
-          image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80",
-          highlight: "เที่ยวทะเลหัวหิน ไหว้พระ อาหารซีฟู้ดสดใหม่ เหมาะกับทุกครอบครัว"
+          id: "pattaya",
+          from: "สนามบินสุวรรณภูมิ (BKK)",
+          to: "พัทยา (Pattaya)",
+          distance: "120 กม.",
+          time: "1.5 - 2 ชม.",
+          highlight: "เที่ยวทะเลพัทยา ชลบุรี รถรับส่งสนามบินสะดวก รวดเร็ว พร้อมคนขับ",
+          tag: "ทริปทะเล & ท่องเที่ยว",
+          badgeColor: "bg-blue-100 text-blue-950 border-blue-200"
         },
         {
-          id: "route-3",
-          name: "เชียงใหม่ - นิมมาน / ดอยสุเทพ / ม่อนแจ่ม",
-          duration: "3 - 5 วัน",
-          distance: "ท่องเที่ยวรอบดอย",
-          priceStarting: "1,190",
-          tag: "สายแคมป์ & วิวดอย",
-          image: "https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=800&q=80",
-          highlight: "สัมผัสอากาศเย็น หมอกยามเช้า และคาเฟ่ธรรมชาติสุดชิค"
+          id: "rayong",
+          from: "สนามบินสุวรรณภูมิ (BKK)",
+          to: "ระยอง (Rayong / ท่าเรือเกาะเสม็ด)",
+          distance: "170 กม.",
+          time: "2 - 2.5 ชม.",
+          highlight: "เดินทางติดต่อธุรกิจ นิคมอุตสาหกรรม หรือต่อเรือข้ามเกาะเสม็ด",
+          tag: "ธุรกิจ & ท่องเที่ยว",
+          badgeColor: "bg-emerald-100 text-emerald-950 border-emerald-200"
         },
         {
-          id: "route-4",
-          name: "ภูเก็ต - เขาหลัก / เสม็ดนางชี (พังงา)",
-          duration: "2 - 4 วัน",
-          distance: "อันดามันโรดทริป",
-          priceStarting: "1,290",
-          tag: "ทะเลอันดามัน",
-          image: "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=800&q=80",
-          highlight: "ชมวิวอ่าวพังงา จุดชมวิวระดับโลก เที่ยวเกาะสวยน้ำใส"
+          id: "trat",
+          from: "สนามบินสุวรรณภูมิ (BKK)",
+          to: "ตราด (Trat / ท่าเรือเกาะช้าง / เกาะกูด)",
+          distance: "315 กม.",
+          time: "4 - 5 ชม.",
+          highlight: "บริการรถตู้และ SUV นั่งสบายไม่เมื่อยล้า พร้อมส่งถึงท่าเรือเฟอร์รี่",
+          tag: "เกาะช้าง & เกาะกูด",
+          badgeColor: "bg-amber-100 text-amber-950 border-amber-200"
+        },
+        {
+          id: "chanthaburi",
+          from: "สนามบินสุวรรณภูมิ (BKK)",
+          to: "จันทบุรี (Chanthaburi)",
+          distance: "240 กม.",
+          time: "3 - 3.5 ชม.",
+          highlight: "ท่องเที่ยวเมืองผลไม้ เขาคิชฌกูฏ อาสนวิหารพระนางมารีอา หรือทำธุระ",
+          tag: "เมืองผลไม้ & ไหว้พระ",
+          badgeColor: "bg-purple-100 text-purple-950 border-purple-200"
         }
       ]
     },
     serviceModel: {
-      title: "Service Model",
-      subtitle: "รูปแบบการบริการที่ยืดหยุ่น ตอบโจทย์ทุกรูปแบบการเดินทางของคุณ",
-      models: [
-        {
-          id: "self-drive",
-          title: "เช่ารถขับเอง (Self-Drive)",
-          desc: "อิสระเต็มที่กับการเดินทาง ท่องเที่ยวตามใจปรารถนา เลือกรถได้หลากหลายรุ่น ไมล์ไม่จำกัด",
-          features: ["ไม่จำกัดระยะทาง", "ประกันภัยชั้น 1 คุ้มครองเต็มรูปแบบ", "ส่งรถถึงที่พักหรือสนามบิน"],
-          icon: "car"
-        },
-        {
-          id: "chauffeur",
-          title: "รถพร้อมคนขับมืออาชีพ (With Chauffeur)",
-          desc: "สะดวกสบาย ปลอดภัย คนขับชำนาญเส้นทาง สุภาพ ตรงต่อเวลา เหมาะสำหรับการเดินทางธุรกิจและทัวร์ VIP",
-          features: ["พนักงานขับรถชำนาญเส้นทาง", "ตรงต่อเวลา สุภาพ เป็นส่วนตัว", "รวมค่าน้ำมันและทางด่วน (ตามแพ็กเกจ)"],
-          icon: "user-check"
-        },
-        {
-          id: "airport-transfer",
-          title: "บริการรับ-ส่งสนามบิน (Airport Transfer)",
-          desc: "เดินทางถึงจุดหมายอย่างตรงเวลา ไม่ต้องกังวลเรื่องการต่อรถ ทั้งสนามบินสุวรรณภูมิ ดอนเมือง ภูเก็ต เชียงใหม่",
-          features: ["บริการรอรับป้ายชื่อ", "ฟรีคอยเที่ยวบินดีเลย์ 60 นาที", "รถสะอาด กว้างขวาง ใส่สัมภาระได้จุใจ"],
-          icon: "plane-landing"
-        }
+      badge: "Service Model",
+      title: "รถรับส่งสนามบินสุวรรณภูมิ ราคาคุ้มค่า 24 ชั่วโมง",
+      subtitle: "เดินทางสะดวก ปลอดภัย รถใหม่สะอาด พร้อมพนักงานขับรถมืออาชีพดูแลตลอดเส้นทาง",
+      safetyBadge: "Safety First 100%",
+      headline: "We are pleased to provide services in all areas.",
+      subHeadline: "ยินดีให้บริการทุกพื้นที่ทั่วไทย ทั้งกรุงเทพฯ ปริมณฑล และต่างจังหวัด",
+      bookAndPriceBtn: "จองรถ / เช็กราคาด่วน",
+      callBtn: "โทร 086-724-0454",
+      serviceList: [
+        "Airports and transfer (รับ-ส่งสนามบิน)",
+        "Business trips (เดินทางติดต่อธุรกิจ)",
+        "Short and long routes (เส้นทางระยะสั้นและทางไกล)",
+        "Private Tour (บริการพาเที่ยวแบบส่วนตัว)",
+        "Private Car (รถยนต์ส่วนบุคคลพร้อมคนขับ)",
+        "รถเช่าพร้อมคนขับทั่วไทย",
+        "รถรับส่งสนามบินสุวรรณภูมิ / ดอนเมือง",
+        "Airport Transfer 24/7",
+        "Taxi Service Private",
+        "Transfer VIP Transport",
+        "รถตู้ VIP 5-10 ที่นั่ง",
+        "รถรับส่งต่างจังหวัดทั่วประเทศ",
+        "Private Airport Transfer Bangkok to Pattaya ✈️"
       ]
+    },
+    carTypeSection: {
+      badge: "Our Fleet",
+      title: "Car Type • ประเภทรถเช่าพร้อมให้บริการ",
+      subtitle: "เลือกรถที่ใช่สำหรับทริปท่องเที่ยวและการเดินทางของคุณ ตรวจเช็กสภาพพร้อมประกันชั้น 1 ทุกคัน",
+      bookThisCar: "จองรถรุ่นนี้",
+      seatsUnit: "ที่นั่ง",
+      insuranceBadge: "ประกันชั้น 1",
+      readyBadge: "พร้อมให้บริการ",
+      reviewsUnit: "รีวิว"
     },
     bookingSection: {
       title: "Booking ระบบจองรถออนไลน์",
@@ -116,25 +179,57 @@ export const translations = {
       returnDate: "วันที่ส่ง",
       returnTime: "เวลาส่ง",
       selectCar: "เลือกรุ่นรถที่ต้องการ",
-      driverOption: "ต้องการคนขับหรือไม่",
-      driverSelf: "ขับเอง (Self-drive)",
-      driverWith: "ต้องการพนักงานขับรถ (With Chauffeur)",
       name: "ชื่อผู้ติดต่อ",
       phone: "เบอร์โทรศัพท์",
-      lineId: "Line ID (ถ้ามี)",
+      lineId: "Line ID / WhatsApp (ถ้ามี)",
       submitBtn: "ยืนยันการจอง",
-      note: "เจ้าหน้าที่จะติดต่อกลับเพื่อยืนยันคิวรถภายใน 15 นาที"
+      note: "เจ้าหน้าที่จะติดต่อกลับเพื่อยืนยันคิวรถภายใน 15 นาที",
+      successTitle: "ส่งข้อมูลการจองเรียบร้อยแล้ว!",
+      successDesc: "เจ้าหน้าที่ SR Travel ได้รับข้อมูลการจองของคุณแล้ว และจะติดต่อกลับเพื่อยืนยันคิวรถโดยเร็วที่สุดครับ",
+      bookAnotherBtn: "จองคันอื่นเพิ่มเติม",
+      locations: [
+        { value: "สนามบินสุวรรณภูมิ (BKK)", label: "สนามบินสุวรรณภูมิ (BKK)" },
+        { value: "สนามบินดอนเมือง (DMK)", label: "สนามบินดอนเมือง (DMK)" },
+        { value: "กรุงเทพฯ - ตัวเมือง / ส่งถึงโรงแรม", label: "กรุงเทพฯ - ตัวเมือง / ส่งถึงโรงแรม" },
+        { value: "สนามบินเชียงใหม่ (CNX)", label: "สนามบินเชียงใหม่ (CNX)" },
+        { value: "สนามบินภูเก็ต (HKT)", label: "สนามบินภูเก็ต (HKT)" },
+        { value: "พัทยา / ชลบุรี", label: "พัทยา / ชลบุรี" },
+        { value: "โคราช / นครราชสีมา", label: "โคราช / นครราชสีมา" }
+      ]
     },
     locationSection: {
-      title: "Location สาขา & จุดบริการรับ-ส่งรถ",
-      subtitle: "ครอบคลุมสนามบินหลักและจุดศูนย์กลางการท่องเที่ยวทั่วประเทศ",
-      locations: [
-        { name: "สนามบินสุวรรณภูมิ (BKK)", desc: "อาคารผู้โดยสาร ชั้น 2 ประตู 3 บริการ 24 ชม." },
-        { name: "สนามบินดอนเมือง (DMK)", desc: "อาคารผู้โดยสาร 2 ชั้น 1 ประตู 14 บริการ 24 ชม." },
-        { name: "กรุงเทพฯ - สาขาศูนย์กลาง", desc: "สุขุมวิท / สีลม / พระราม 9 พร้อมบริการส่งถึงหน้าบ้าน/โรงแรม" },
-        { name: "สนามบินเชียงใหม่ (CNX)", desc: "เคาน์เตอร์รับรถ ชั้น 1 ตรงข้ามประตูทางออก" },
-        { name: "สนามบินภูเก็ต (HKT)", desc: "อาคารผู้โดยสารภายในประเทศและระหว่างประเทศ" },
-        { name: "พัทยา / ชลบุรี", desc: "บริการส่งมอบรถถึงหน้าโรงแรมและรีสอร์ตทั่วพัทยา" }
+      badge: "Company Location & Service Hubs",
+      title: "Location • ที่ตั้งและจุดบริการ",
+      subHeadline: "Travel and service • พร้อมดูแลทุกการเดินทางของคุณตลอด 24 ชั่วโมง",
+      headOfficeLabel: "Company Location (สำนักงานใหญ่)",
+      nearAirportNote: "(ใกล้สนามบินสุวรรณภูมิ เดินทางสะดวก รวดเร็ว พร้อมจัดส่งรถตลอด 24 ชม.)",
+      tel1Label: "เบอร์โทรติดต่อ (Tel 1)",
+      tel2Label: "เบอร์โทรติดต่อ (Tel 2)",
+      open24Badge: "Open 24 Hours / ให้บริการ 24 ชม.",
+      helpTitle: "ต้องการจองรถหรือนัดหมายรับ-ส่ง?",
+      helpDesc: "เรามีรถประจำอยู่ที่สนามบินสุวรรณภูมิและพื้นที่ใกล้เคียง พร้อมเดินทางไปรับคุณได้ทันทีในเขตสมุทรปราการ กรุงเทพฯ และวิ่งสู่ต่างจังหวัดทั่วประเทศ",
+      callQuickBtn: "โทรด่วน 086-724-0454",
+      bookAdvanceBtn: "จองรถล่วงหน้าผ่านระบบออนไลน์",
+      mapPinTitle: "แผนที่ปักหมุดที่ตั้งสำนักงาน (Google Maps Pin)",
+      mapPinExact: "📍 หมุดสีแดงตรงจุด",
+      mapPinAddress: "บ้านพิศาล สุวรรณภูมิ โครงการ 2/2 (บางโฉลง) ถ.เฉลิมพระเกียรติ 72 พรรษา อ.บางพลี จ.สมุทรปราการ",
+      mapDirectionBtn: "กดนำทาง GPS ด้วย Google Maps",
+      hubs: [
+        {
+          name: "สนามบินสุวรรณภูมิ (BKK)",
+          desc: "จุดนัดพบอาคารผู้โดยสาร พร้อมบริการ 24 ชั่วโมง มีพนักงานรอรับป้ายชื่อ",
+          highlight: "รับ-ส่งสนามบินหลัก"
+        },
+        {
+          name: "สนามบินดอนเมือง (DMK)",
+          desc: "จุดรับ-ส่งผู้โดยสารทั้งภายในประเทศและระหว่างประเทศ สะดวกรวดเร็ว",
+          highlight: "บริการ 24 ชั่วโมง"
+        },
+        {
+          name: "โคราช / นครราชสีมา",
+          desc: "บริการรถพร้อมคนขับครอบคลุมทั่วจังหวัดนครราชสีมา เขาใหญ่ และภาคอีสาน",
+          highlight: "ศูนย์บริการภาคอีสาน"
+        }
       ]
     },
     reviewSection: {
@@ -257,14 +352,14 @@ export const translations = {
   },
   en: {
     nav: {
-      services: "Service Type",
+      services: "Our Services",
       popularRoutes: "Popular Routes 🚗",
       serviceModel: "Service Model",
-      carType: "Car Type",
-      booking: "Booking",
-      location: "Location",
-      review: "Review",
-      faq: "FAQ ?",
+      carType: "Our Fleet",
+      booking: "Book Online",
+      location: "Locations",
+      review: "Reviews",
+      faq: "FAQ",
       categories: "All Categories",
       sedan: "Sedan / Hatchback",
       ev: "Electric Vehicles (EV)",
@@ -287,78 +382,141 @@ export const translations = {
       priceInstallment: "Rental Period",
       placeholderPrice: "Select travel dates",
     },
+    servicesSection: {
+      badge: "Our Services • Service Type",
+      title: "SR Travel and Transfer",
+      subtitle: "Chauffeur & Taxi Service: Korat to All Thailand 24/7 / Urgent Dispatch",
+      slogan: "“Every route of yours, we are ready to take care”",
+      rateAlt: "SR Travel and Transfer Service Rates",
+      bannerAlt: "SR Travel and Transfer Chauffeur & Fleet Service",
+      bookBtn: "Book Route",
+      callBtn: "Call Now",
+      guaranteeBadge: "100% Safe • Punctual • Heartfelt Service",
+      guaranteeTitle: "Whenever you travel, rest assured... let us take care of you",
+      guaranteeDesc: "Contact & inquiry available 24/7 with professional chauffeurs",
+      bookOnlineBtn: "Book Online",
+      services: [
+        {
+          title: "Airport Transfers",
+          desc: "BKK, DMK & regional airports with punctual 24/7 flight tracking service",
+          badge: "24/7 Airport"
+        },
+        {
+          title: "Travel Across Thailand",
+          desc: "Custom road trips to Khao Yai, beaches, mountains & bespoke private tours",
+          badge: "Private Tours"
+        },
+        {
+          title: "City & Upcountry Trips",
+          desc: "Business trips, conferences, seminars & personal travel across all provinces",
+          badge: "Nationwide"
+        },
+        {
+          title: "24/7 Express Dispatch",
+          desc: "Immediate dispatch for urgent travel needs with verified professional drivers",
+          badge: "Express 24H"
+        }
+      ]
+    },
     popularRoutes: {
+      badge: "Popular Routes 🚗",
       title: "Popular Routes 🚗",
-      subtitle: "Top travel destinations with self-drive or professional chauffeur service",
+      subtitle: "Airport transfer & chauffeur service from Suvarnabhumi Airport to destinations across Thailand",
+      distanceLabel: "Distance",
+      timeLabel: "Time",
+      bookRouteBtn: "Book This Route",
+      otherRoutesBadge: "Other Routes in Thailand",
+      otherRoutesTitle: "Looking for other routes?",
+      otherRoutesDesc: "SR Travel provides nationwide transfers with Sedans, SUVs, and VIP Vans. Inquire for custom quotes anytime.",
+      callQuickBtn: "Call 086-724-0454",
+      inquiryBtn: "Get a Quote",
       routes: [
         {
-          id: "route-1",
-          name: "Bangkok - Pattaya / Koh Lan",
-          duration: "1 - 3 Days",
-          distance: "150 km",
-          priceStarting: "890 THB",
-          tag: "#1 Popular Route",
-          image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-          highlight: "Beachside drives, seaside cafes, perfect weekend getaway"
+          id: "korat",
+          from: "Suvarnabhumi Airport (BKK)",
+          to: "Nakhon Ratchasima (Korat)",
+          distance: "250 km",
+          time: "3 - 4 hrs",
+          highlight: "Comfortable, safe, and punctual transfer straight to your home or hotel",
+          tag: "#1 Most Popular Route",
+          badgeColor: "bg-orange-100 text-orange-950 border-orange-200"
         },
         {
-          id: "route-2",
-          name: "Bangkok - Hua Hin / Pranburi",
-          duration: "2 - 3 Days",
-          distance: "200 km",
-          priceStarting: "990 THB",
-          tag: "Family & Relaxation",
-          image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80",
-          highlight: "Hua Hin beaches, fresh seafood, ideal for family leisure"
+          id: "pattaya",
+          from: "Suvarnabhumi Airport (BKK)",
+          to: "Pattaya / Chonburi",
+          distance: "120 km",
+          time: "1.5 - 2 hrs",
+          highlight: "Fast and convenient airport transfer with private driver to Pattaya beaches",
+          tag: "Beach & Leisure",
+          badgeColor: "bg-blue-100 text-blue-950 border-blue-200"
         },
         {
-          id: "route-3",
-          name: "Chiang Mai - Mon Jam / Doi Suthep",
-          duration: "3 - 5 Days",
-          distance: "Mountain scenic",
-          priceStarting: "1,190 THB",
-          tag: "Scenic & Camping",
-          image: "https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=800&q=80",
-          highlight: "Breezy mountains, morning mist, and artisanal coffee cafes"
+          id: "rayong",
+          from: "Suvarnabhumi Airport (BKK)",
+          to: "Rayong / Koh Samet Pier",
+          distance: "170 km",
+          time: "2 - 2.5 hrs",
+          highlight: "Direct transfer for business estates or ferry connection to Koh Samet",
+          tag: "Business & Beach",
+          badgeColor: "bg-emerald-100 text-emerald-950 border-emerald-200"
         },
         {
-          id: "route-4",
-          name: "Phuket - Phang Nga / Khao Lak",
-          duration: "2 - 4 Days",
-          distance: "Andaman road trip",
-          priceStarting: "1,290 THB",
-          tag: "Andaman Sea",
-          image: "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=800&q=80",
-          highlight: "World-class Phang Nga viewpoints and pristine islands"
+          id: "trat",
+          from: "Suvarnabhumi Airport (BKK)",
+          to: "Trat / Koh Chang & Koh Kood Piers",
+          distance: "315 km",
+          time: "4 - 5 hrs",
+          highlight: "Spacious Vans and SUVs for group travel straight to island ferry terminals",
+          tag: "Koh Chang & Koh Kood",
+          badgeColor: "bg-amber-100 text-amber-950 border-amber-200"
+        },
+        {
+          id: "chanthaburi",
+          from: "Suvarnabhumi Airport (BKK)",
+          to: "Chanthaburi",
+          distance: "240 km",
+          time: "3 - 3.5 hrs",
+          highlight: "Travel to fruit orchards, Khao Khitchakut, historical cathedrals or business",
+          tag: "Culture & Orchards",
+          badgeColor: "bg-purple-100 text-purple-950 border-purple-200"
         }
       ]
     },
     serviceModel: {
-      title: "Service Model",
-      subtitle: "Flexible mobility solutions crafted for every journey",
-      models: [
-        {
-          id: "self-drive",
-          title: "Self-Drive Rental",
-          desc: "Complete freedom to travel at your own pace with unlimited mileage and high-standard vehicles.",
-          features: ["Unlimited Mileage", "Full Comprehensive Insurance", "Free Airport / Hotel Delivery"],
-          icon: "car"
-        },
-        {
-          id: "chauffeur",
-          title: "With Professional Chauffeur",
-          desc: "Relax in luxury with courteous, punctually trained drivers specialized in regional navigation.",
-          features: ["Experienced local drivers", "Punctual & private service", "Fuel & Toll packages available"],
-          icon: "user-check"
-        },
-        {
-          id: "airport-transfer",
-          title: "Airport Transfer Service",
-          desc: "Seamless, hassle-free airport pickups at Suvarnabhumi, Don Mueang, Phuket, and Chiang Mai.",
-          features: ["Meet & Greet with name sign", "Free 60-min flight delay waiting", "Spacious luggage capacity"],
-          icon: "plane-landing"
-        }
+      badge: "Service Model",
+      title: "Suvarnabhumi Airport Transfers • Best Rates 24 Hours",
+      subtitle: "Convenient, safe, clean vehicles with professional chauffeurs dedicated to your entire trip",
+      safetyBadge: "Safety First 100%",
+      headline: "We are pleased to provide services in all areas.",
+      subHeadline: "Proudly serving all regions across Thailand including Bangkok, metropolitan areas, and upcountry.",
+      bookAndPriceBtn: "Book / Check Price",
+      callBtn: "Call 086-724-0454",
+      serviceList: [
+        "Airports and transfer",
+        "Business trips & Conferences",
+        "Short and long-distance routes",
+        "Private Tour & Sightseeing",
+        "Private Car with Chauffeur",
+        "Chauffeur Service Across Thailand",
+        "Suvarnabhumi & Don Mueang Airport Transfer",
+        "Airport Transfer 24/7",
+        "Taxi Service Private",
+        "Transfer VIP Transport",
+        "VIP Vans 5-10 Seats",
+        "Provincial Transfers Nationwide",
+        "Private Airport Transfer Bangkok to Pattaya ✈️"
       ]
+    },
+    carTypeSection: {
+      badge: "Our Fleet",
+      title: "Car Type • Available Fleet Ready to Serve",
+      subtitle: "Choose the perfect vehicle for your journey with full Class 1 insurance and 24/7 assistance.",
+      bookThisCar: "Book This Car",
+      seatsUnit: "seats",
+      insuranceBadge: "Class 1 Insurance",
+      readyBadge: "Ready to Serve",
+      reviewsUnit: "reviews"
     },
     bookingSection: {
       title: "Online Booking System",
@@ -370,25 +528,57 @@ export const translations = {
       returnDate: "Drop-off Date",
       returnTime: "Drop-off Time",
       selectCar: "Select Vehicle Model",
-      driverOption: "Driver Preference",
-      driverSelf: "Self-drive",
-      driverWith: "With Chauffeur",
       name: "Contact Name",
       phone: "Phone Number",
-      lineId: "WhatsApp / Line ID",
+      lineId: "WhatsApp / Line ID (Optional)",
       submitBtn: "Book Now",
-      note: "Our team will reach out within 15 minutes to confirm availability."
+      note: "Our team will reach out within 15 minutes to confirm availability.",
+      successTitle: "Booking Request Received!",
+      successDesc: "Our SR Travel representative has received your request and will contact you shortly to confirm.",
+      bookAnotherBtn: "Book Another Vehicle",
+      locations: [
+        { value: "สนามบินสุวรรณภูมิ (BKK)", label: "Suvarnabhumi Airport (BKK)" },
+        { value: "สนามบินดอนเมือง (DMK)", label: "Don Mueang Airport (DMK)" },
+        { value: "กรุงเทพฯ - ตัวเมือง / ส่งถึงโรงแรม", label: "Bangkok City / Hotel Transfer" },
+        { value: "สนามบินเชียงใหม่ (CNX)", label: "Chiang Mai Airport (CNX)" },
+        { value: "สนามบินภูเก็ต (HKT)", label: "Phuket Airport (HKT)" },
+        { value: "พัทยา / ชลบุรี", label: "Pattaya / Chonburi" },
+        { value: "โคราช / นครราชสีมา", label: "Nakhon Ratchasima (Korat)" }
+      ]
     },
     locationSection: {
-      title: "Location & Service Hubs",
-      subtitle: "Convenient branches across major international airports and tourist hubs",
-      locations: [
-        { name: "Suvarnabhumi Airport (BKK)", desc: "Terminal 2nd Fl, Gate 3 (24/7 service)" },
-        { name: "Don Mueang Airport (DMK)", desc: "Terminal 2, 1st Fl, Gate 14 (24/7 service)" },
-        { name: "Bangkok Central Hub", desc: "Sukhumvit / Rama 9 with doorstep delivery" },
-        { name: "Chiang Mai Airport (CNX)", desc: "1st Fl Arrivals, pick-up counter" },
-        { name: "Phuket Airport (HKT)", desc: "Domestic & International terminal service" },
-        { name: "Pattaya / Chonburi", desc: "Hotel & resort delivery throughout Pattaya" }
+      badge: "Company Location & Service Hubs",
+      title: "Location • Branches & Service Hubs",
+      subHeadline: "Travel and service • Ready to assist your journey 24 hours daily",
+      headOfficeLabel: "Company Head Office",
+      nearAirportNote: "(Near Suvarnabhumi Airport with fast 24/7 vehicle dispatch)",
+      tel1Label: "Phone Contact (Tel 1)",
+      tel2Label: "Phone Contact (Tel 2)",
+      open24Badge: "Open 24 Hours Daily",
+      helpTitle: "Looking to book or schedule a pickup?",
+      helpDesc: "We maintain ready vehicles stationed around Suvarnabhumi Airport and Bangkok, ready to pick you up immediately.",
+      callQuickBtn: "Call 086-724-0454",
+      bookAdvanceBtn: "Book in Advance Online",
+      mapPinTitle: "Head Office Google Maps Pin",
+      mapPinExact: "📍 Exact Red Marker",
+      mapPinAddress: "68/271 Banpisan Suvarnabhumi 2/2, Moo 5 Chaloem Phrakiat 72 Phansa Rd, Bang Chalong, Bang Phli, Samut Prakan 10540",
+      mapDirectionBtn: "Navigate via Google Maps GPS",
+      hubs: [
+        {
+          name: "Suvarnabhumi Airport (BKK)",
+          desc: "Terminal meeting point with 24/7 name-sign meet & greet service",
+          highlight: "Primary Airport Hub"
+        },
+        {
+          name: "Don Mueang Airport (DMK)",
+          desc: "Domestic and international passenger pickups with rapid dispatch",
+          highlight: "24/7 Airport Service"
+        },
+        {
+          name: "Nakhon Ratchasima (Korat)",
+          desc: "Chauffeur and rental hubs covering Korat, Khao Yai, and the entire Northeast",
+          highlight: "Northeast Regional Hub"
+        }
       ]
     },
     reviewSection: {

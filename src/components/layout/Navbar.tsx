@@ -164,7 +164,7 @@ export function Navbar({
       {mobileMenuOpen && (
         <div className="xl:hidden border-t border-slate-100 bg-white px-4 pt-4 pb-8 space-y-2 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-400 px-3 py-1">
-            {t.services}
+            {lang === "th" ? "เมนูนำทางหลัก" : "Main Navigation"}
           </div>
           
           {menuItems.map((item, idx) => {

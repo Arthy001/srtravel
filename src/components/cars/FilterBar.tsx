@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { 
   SlidersHorizontal, 
   ChevronDown, 
-  Map, 
   Settings, 
   Check, 
   RotateCcw 
@@ -83,24 +82,11 @@ export function FilterBar({
 
   return (
     <div className="relative mb-8" id="listings">
-      {/* Top Header Row: Over 3,000 cars & Show Map */}
+      {/* Top Header Row: จำนวนรถ */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
           {t.totalCount} {totalCount.toLocaleString()} {t.carsUnit}
         </h2>
-
-        <button
-          type="button"
-          onClick={onToggleMap}
-          className={`px-4 py-2 rounded-full border text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all ${
-            showMap
-              ? "bg-slate-900 text-white border-slate-900 shadow-sm"
-              : "bg-white text-slate-800 border-slate-300 hover:border-slate-400 hover:bg-slate-50"
-          }`}
-        >
-          <span>{showMap ? t.hideMap : t.showMap}</span>
-          <Map className="w-4 h-4 text-slate-600" />
-        </button>
       </div>
 
       {/* Filter Pills Row */}

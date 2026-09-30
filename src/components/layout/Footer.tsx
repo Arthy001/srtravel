@@ -58,7 +58,7 @@ export function Footer({ lang = "th" }: FooterProps) {
               </li>
               <li>
                 <a href="#location" className="hover:text-orange-600 transition">
-                  {isTh ? "จุดบริการและแผนที่" : "Locations & Map"}
+                  {isTh ? "จุดบริการ" : "Locations"}
                 </a>
               </li>
               <li>
@@ -157,11 +157,20 @@ export function Footer({ lang = "th" }: FooterProps) {
 
         {/* Bottom Line Copyright */}
         <div className="pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
-          <p>{t.copyright}</p>
-          <div className="flex items-center gap-6">
-            <Link href="/" className="hover:text-slate-600 transition">{t.privacy}</Link>
-            <Link href="/" className="hover:text-slate-600 transition">{t.terms}</Link>
-            <Link href="/" className="hover:text-slate-600 transition">{t.sitemap}</Link>
+          <div className="flex items-center gap-3">
+            {/* Sanity Admin Entry Point */}
+            <a
+              href="/studio"
+              target="_blank"
+              rel="noreferrer"
+              title="Admin"
+              className="w-7 h-7 rounded-full bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-sm"
+            >
+              <svg width="14" height="14" viewBox="0 0 32 32" fill="currentColor">
+                <path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm5.368 9.504c0 2.106-1.52 3.706-3.789 4.378l4.04 5.64c.569-.376 1.095-.806 1.567-1.283l1.477 1.478C23.216 21.18 19.83 23 16 23c-3.83 0-7.216-1.82-9.663-4.283l1.477-1.478c.472.477.998.907 1.567 1.283l4.04-5.64C11.152 12.21 9.632 10.61 9.632 8.504c0-2.657 2.298-4.504 6.368-4.504s6.368 1.847 6.368 4.504zM16 20c2.415 0 4.144-1.4 4.144-3.5S18.415 13 16 13s-4.144 1.4-4.144 3.5S13.585 20 16 20zm0-9c-1.918 0-3.264-1.12-3.264-2.794C12.736 6.532 14.082 5 16 5s3.264 1.532 3.264 3.206C19.264 9.88 17.918 11 16 11z"/>
+              </svg>
+            </a>
+            <p>{t.copyright}</p>
           </div>
         </div>
 

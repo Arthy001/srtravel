@@ -100,14 +100,40 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
   const [selectedImgIndex, setSelectedImgIndex] = useState<number | null>(null);
 
   useEffect(() => {
+    let isCancelled = false;
+
     async function loadReviews() {
       const sanityReviews = await getReviewsFromSanity();
-      if (sanityReviews && sanityReviews.length > 0) {
-        setReviews(sanityReviews);
+      const baseReviews = sanityReviews && sanityReviews.length > 0 ? sanityReviews : defaultReviews;
+
+      if (lang === "en") {
+        try {
+          const res = await fetch("/api/translate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ items: baseReviews, from: "th", to: "en" }),
+          });
+          const result = await res.json();
+          if (result.success && result.items && !isCancelled) {
+            setReviews(result.items);
+            return;
+          }
+        } catch (err) {
+          console.warn("Auto-translate reviews error:", err);
+        }
+      }
+
+      if (!isCancelled) {
+        setReviews(baseReviews);
       }
     }
+
     loadReviews();
-  }, []);
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [lang]);
 
   const handleOpenLightbox = (index: number) => {
     setSelectedImgIndex(index);
@@ -153,7 +179,7 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
           <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-10 mt-6 pt-5 border-t border-slate-100 text-slate-600 text-xs sm:text-sm">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>ภาพถ่ายจากลูกค้าที่ใช้บริการจริง</span>
+              <span>{lang === "th" ? "ภาพถ่ายจากลูกค้าที่ใช้บริการจริง" : "Photos from verified travelers"}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="flex text-amber-400">
@@ -161,11 +187,11 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
                   <Star key={i} className="w-4 h-4 fill-amber-400" />
                 ))}
               </div>
-              <span className="font-semibold text-slate-800">คะแนนความพึงพอใจ 5.0 เต็ม</span>
+              <span className="font-semibold text-slate-800">{lang === "th" ? "คะแนนความพึงพอใจ 5.0 เต็ม" : "5.0/5.0 Customer Rating"}</span>
             </div>
             <div className="flex items-center gap-2">
               <Heart className="w-4 h-4 text-rose-500 fill-rose-500" />
-              <span>ลูกค้ากลับมาใช้ซ้ำกว่า 98%</span>
+              <span>{lang === "th" ? "ลูกค้ากลับมาใช้ซ้ำกว่า 98%" : "98%+ Returning Clients"}</span>
             </div>
           </div>
         </div>
@@ -233,7 +259,7 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
 
                 <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                   <span className="font-medium text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full">
-                    ✓ ยืนยันผู้ใช้บริการจริง
+                    {lang === "th" ? "✓ ยืนยันผู้ใช้บริการจริง" : "✓ Verified Traveler"}
                   </span>
                   <span className="text-[11px] text-slate-400">SR Travel Showcase</span>
                 </div>
@@ -246,17 +272,17 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
         <div className="mt-14 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white text-center sm:flex sm:items-center sm:justify-between sm:text-left shadow-lg border border-slate-800">
           <div>
             <h3 className="text-lg sm:text-xl font-bold tracking-tight">
-              สัมผัสประสบการณ์เดินทางระดับ VIP กับ SR Travel
+              {lang === "th" ? "สัมผัสประสบการณ์เดินทางระดับ VIP กับ SR Travel" : "Experience VIP Chauffeur Service with SR Travel"}
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 mt-1">
-              รถใหม่ สะอาด ปลอดภัย คนขับมืออาชีพ พร้อมดูแลทุกเส้นทางตลอด 24 ชั่วโมง
+              {lang === "th" ? "รถใหม่ สะอาด ปลอดภัย คนขับมืออาชีพ พร้อมดูแลทุกเส้นทางตลอด 24 ชั่วโมง" : "Modern, clean, safe vehicles with professional chauffeurs dedicated 24/7."}
             </p>
           </div>
           <a
             href="#booking"
             className="mt-4 sm:mt-0 inline-flex items-center justify-center px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-sm shadow-md hover:shadow-amber-500/25 transition-all transform hover:-translate-y-0.5"
           >
-            จองรถหรือติดต่อสอบถาม
+            {lang === "th" ? "จองรถหรือติดต่อสอบถาม" : "Book Vehicle or Inquire Now"}
           </a>
         </div>
 
@@ -328,7 +354,7 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
                 </p>
               )}
               <div className="mt-2 text-xs text-slate-400">
-                ภาพที่ {selectedImgIndex + 1} จาก {reviews.length}
+                {lang === "th" ? `ภาพที่ ${selectedImgIndex + 1} จาก ${reviews.length}` : `Photo ${selectedImgIndex + 1} of ${reviews.length}`}
               </div>
             </div>
           </div>

@@ -7,14 +7,18 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  lang?: "th" | "en";
 }
 
 export function Pagination({
   currentPage,
   totalPages,
   onPageChange,
+  lang = "th",
 }: PaginationProps) {
   if (totalPages <= 1) return null;
+
+  const isTh = lang === "th";
 
   // Generate page numbers with ellipses
   const getPageNumbers = () => {
@@ -50,7 +54,7 @@ export function Pagination({
         className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-slate-900 disabled:opacity-30 disabled:pointer-events-none transition mr-1 sm:mr-2 cursor-pointer"
       >
         <ArrowLeft className="w-4 h-4" />
-        <span>Previous</span>
+        <span>{isTh ? "ย้อนกลับ" : "Previous"}</span>
       </button>
 
       {/* Page Numbers */}
@@ -95,7 +99,7 @@ export function Pagination({
         }}
         className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-slate-900 disabled:opacity-30 disabled:pointer-events-none transition ml-1 sm:ml-2 cursor-pointer"
       >
-        <span>Next</span>
+        <span>{isTh ? "ถัดไป" : "Next"}</span>
         <ArrowRight className="w-4 h-4" />
       </button>
     </nav>

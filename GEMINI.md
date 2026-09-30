@@ -16,6 +16,10 @@
    - ห้ามรันคำสั่ง deploy ใดๆ ทั้งสิ้น (เช่น `wrangler pages deploy`, `wrangler deploy`, `vercel deploy` ฯลฯ) โดยที่ผู้ใช้ไม่ได้สั่งการให้ deploy ในข้อความนั้นอย่างชัดเจน
    - เมื่อทำการแก้ไขโค้ดหรือ build เสร็จ ให้ทำเพียงรายงานความพร้อมและแสดงคำสั่ง deploy ให้ผู้ใช้ทราบเท่านั้น ห้ามรันคำสั่ง deploy เองล่วงหน้าหรือทำโดยอัตโนมัติเป็นอันขาด
 
+4. **การรันคำสั่งบน Windows PowerShell (Strict Rule: Windows PowerShell Command Syntax)**
+   - ห้ามใช้ตัวเชื่อม `&&` ในการรันคำสั่งต่อเนื่องบน PowerShell เป็นอันขาด (เพราะ PowerShell จะเกิด ParserError: The token '&&' is not a valid statement separator)
+   - ต้องใช้เครื่องหมายเซมิโคลอน `;` ในการเชื่อมคำสั่งเสมอ เช่น `git add . ; git commit -m "..."` หรือรันแยกคำสั่งทีละคำสั่งเท่านั้น
+
 ---
 
 ## 🚗 Project Overview & Tech Stack - Car4U

@@ -1,40 +1,21 @@
 import React from "react";
 import { MapPin, PhoneCall, Building, Clock, Navigation, ExternalLink } from "lucide-react";
-import { Language } from "@/lib/i18n/translations";
+import { Language, translations } from "@/lib/i18n/translations";
 
 interface LocationSectionProps {
   lang: Language;
 }
 
 export function LocationSection({ lang }: LocationSectionProps) {
-  const isTh = lang === "th";
+  const t = translations[lang].locationSection;
   
   // Coordinates for Baan Pisan Suvarnabhumi 2/2 (Bang Chalong, Bang Phli, Samut Prakan)
   const lat = 13.6264;
   const lng = 100.7483;
-  const companyName = "SR Travel And Transfer CO., LTD.";
   
   // Google Maps Embed URL with pinned marker at exact coordinates
-  const googleMapEmbedUrl = `https://maps.google.com/maps?q=${lat},${lng}&hl=th&z=16&output=embed`;
+  const googleMapEmbedUrl = `https://maps.google.com/maps?q=${lat},${lng}&hl=${lang}&z=16&output=embed`;
   const googleMapDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
-
-  const hubs = [
-    {
-      name: "สนามบินสุวรรณภูมิ (BKK)",
-      desc: "จุดนัดพบอาคารผู้โดยสาร พร้อมบริการ 24 ชั่วโมง มีพนักงานรอรับป้ายชื่อ",
-      highlight: "รับ-ส่งสนามบินหลัก"
-    },
-    {
-      name: "สนามบินดอนเมือง (DMK)",
-      desc: "จุดรับ-ส่งผู้โดยสารทั้งภายในประเทศและระหว่างประเทศ สะดวกรวดเร็ว",
-      highlight: "บริการ 24 ชั่วโมง"
-    },
-    {
-      name: "โคราช / นครราชสีมา",
-      desc: "บริการรถพร้อมคนขับครอบคลุมทั่วจังหวัดนครราชสีมา เขาใหญ่ และภาคอีสาน",
-      highlight: "ศูนย์บริการภาคอีสาน"
-    }
-  ];
 
   return (
     <section id="location" className="py-16 sm:py-20 bg-gradient-to-b from-white via-orange-50/20 to-white relative scroll-mt-20">
@@ -44,16 +25,16 @@ export function LocationSection({ lang }: LocationSectionProps) {
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 text-orange-950 text-xs font-bold mb-3 border border-orange-200 shadow-xs">
             <MapPin className="w-3.5 h-3.5 text-orange-600" />
-            <span>Company Location & Service Hubs</span>
+            <span>{t.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Location • ที่ตั้งและจุดบริการ
+            {t.title}
           </h2>
           <p className="mt-2 text-base sm:text-lg font-bold text-orange-600">
             SR Travel And Transfer CO., LTD.
           </p>
           <p className="text-xs sm:text-sm text-slate-500 font-medium">
-            Travel and service • พร้อมดูแลทุกการเดินทางของคุณตลอด 24 ชั่วโมง
+            {t.subHeadline}
           </p>
         </div>
 
@@ -69,7 +50,7 @@ export function LocationSection({ lang }: LocationSectionProps) {
                 </div>
                 <div>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200">
-                    Company Location (สำนักงานใหญ่)
+                    {t.headOfficeLabel}
                   </span>
                   <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
                     SR Travel And Transfer CO., LTD.
@@ -86,7 +67,7 @@ export function LocationSection({ lang }: LocationSectionProps) {
                   </p>
                 </div>
                 <div className="pl-8 text-[11px] text-slate-400 font-medium">
-                  (ใกล้สนามบินสุวรรณภูมิ เดินทางสะดวก รวดเร็ว พร้อมจัดส่งรถตลอด 24 ชม.)
+                  {t.nearAirportNote}
                 </div>
               </div>
 
@@ -100,7 +81,7 @@ export function LocationSection({ lang }: LocationSectionProps) {
                     <PhoneCall className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[10px] text-orange-800 font-bold uppercase block">เบอร์โทรติดต่อ (Tel 1)</span>
+                    <span className="text-[10px] text-orange-800 font-bold uppercase block">{t.tel1Label}</span>
                     <span className="text-sm sm:text-base font-black text-slate-900 group-hover:text-orange-600 transition">
                       +(66)8-6724-0454
                     </span>
@@ -115,7 +96,7 @@ export function LocationSection({ lang }: LocationSectionProps) {
                     <PhoneCall className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[10px] text-orange-800 font-bold uppercase block">เบอร์โทรติดต่อ (Tel 2)</span>
+                    <span className="text-[10px] text-orange-800 font-bold uppercase block">{t.tel2Label}</span>
                     <span className="text-sm sm:text-base font-black text-slate-900 group-hover:text-orange-600 transition">
                       +(66)6-5459-5435
                     </span>
@@ -128,15 +109,15 @@ export function LocationSection({ lang }: LocationSectionProps) {
             <div className="lg:col-span-5 bg-gradient-to-br from-slate-900 to-orange-950 rounded-3xl p-6 sm:p-8 text-white space-y-5">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-orange-300 text-xs font-bold border border-white/10">
                 <Clock className="w-3.5 h-3.5" />
-                <span>Open 24 Hours / ให้บริการ 24 ชม.</span>
+                <span>{t.open24Badge}</span>
               </div>
 
               <div>
                 <h4 className="text-xl font-bold">
-                  ต้องการจองรถหรือนัดหมายรับ-ส่ง?
+                  {t.helpTitle}
                 </h4>
                 <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-                  เรามีรถประจำอยู่ที่สนามบินสุวรรณภูมิและพื้นที่ใกล้เคียง พร้อมเดินทางไปรับคุณได้ทันทีในเขตสมุทรปราการ กรุงเทพฯ และวิ่งสู่ต่างจังหวัดทั่วประเทศ
+                  {t.helpDesc}
                 </p>
               </div>
 
@@ -146,13 +127,13 @@ export function LocationSection({ lang }: LocationSectionProps) {
                   className="w-full py-3 px-4 rounded-2xl bg-orange-500 hover:bg-orange-600 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition"
                 >
                   <PhoneCall className="w-4 h-4" />
-                  <span>โทรด่วน 086-724-0454</span>
+                  <span>{t.callQuickBtn}</span>
                 </a>
                 <a
                   href="#booking"
                   className="w-full py-2.5 px-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center justify-center gap-2 transition"
                 >
-                  <span>จองรถล่วงหน้าผ่านระบบออนไลน์</span>
+                  <span>{t.bookAdvanceBtn}</span>
                 </a>
               </div>
             </div>
@@ -169,13 +150,13 @@ export function LocationSection({ lang }: LocationSectionProps) {
               </div>
               <div>
                 <h4 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
-                  <span>แผนที่ปักหมุดที่ตั้งสำนักงาน (Google Maps Pin)</span>
+                  <span>{t.mapPinTitle}</span>
                   <span className="px-2 py-0.5 rounded-full bg-red-50 text-red-600 text-[10px] font-bold border border-red-200">
-                    📍 หมุดสีแดงตรงจุด
+                    {t.mapPinExact}
                   </span>
                 </h4>
                 <p className="text-[11px] text-slate-500">
-                  บ้านพิศาล สุวรรณภูมิ โครงการ 2/2 (บางโฉลง) ถ.เฉลิมพระเกียรติ 72 พรรษา อ.บางพลี จ.สมุทรปราการ
+                  {t.mapPinAddress}
                 </p>
               </div>
             </div>
@@ -186,7 +167,7 @@ export function LocationSection({ lang }: LocationSectionProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold transition shadow-xs"
             >
-              <span>กดนำทาง GPS ด้วย Google Maps</span>
+              <span>{t.mapDirectionBtn}</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
@@ -208,7 +189,7 @@ export function LocationSection({ lang }: LocationSectionProps) {
 
         {/* Supporting Hubs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {hubs.map((hub, idx) => (
+          {t.hubs.map((hub, idx) => (
             <div 
               key={idx}
               className="p-5 rounded-3xl bg-white border border-slate-200/80 shadow-xs hover:border-orange-200 hover:shadow-md transition-all flex items-start gap-3.5"

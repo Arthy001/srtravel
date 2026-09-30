@@ -124,10 +124,12 @@ export function BookingSection({ lang, selectedCarModel }: BookingSectionProps) 
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900">
-                {isTh ? "ส่งคำขอจองรถเข้าอีเมลเรียบร้อยแล้ว!" : "Booking Request Sent to Email!"}
+                {t.successTitle || (isTh ? "ส่งคำขอจองรถเข้าอีเมลเรียบร้อยแล้ว!" : "Booking Request Sent to Email!")}
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed">
-                ระบบได้ส่งรายละเอียดการจองของคุณไปยังอีเมล <span className="font-bold text-slate-900">{CONTACT_INFO.email}</span> เรียบร้อยแล้ว เจ้าหน้าที่จะติดต่อกลับเพื่อยืนยันคิวรถภายใน 15 นาทีครับ
+                {isTh
+                  ? `ระบบได้ส่งรายละเอียดการจองของคุณไปยังอีเมล ${CONTACT_INFO.email} เรียบร้อยแล้ว เจ้าหน้าที่จะติดต่อกลับเพื่อยืนยันคิวรถภายใน 15 นาทีครับ`
+                  : `Your booking details have been forwarded to our dispatch team (${CONTACT_INFO.email}). Our team will reach out within 15 minutes to confirm.`}
               </p>
 
               {/* Quick Contact Buttons */}
@@ -137,14 +139,14 @@ export function BookingSection({ lang, selectedCarModel }: BookingSectionProps) 
                   className="px-4 py-2.5 rounded-xl bg-orange-500 text-white text-xs font-bold hover:bg-orange-600 flex items-center gap-1.5 transition shadow-xs"
                 >
                   <PhoneCall className="w-3.5 h-3.5" />
-                  <span>โทร: {CONTACT_INFO.phones[0].number}</span>
+                  <span>{isTh ? "โทร" : "Call"}: {CONTACT_INFO.phones[0].number}</span>
                 </a>
                 <a
                   href={`tel:${CONTACT_INFO.phones[1].number.replace(/[^0-9+]/g, '')}`}
                   className="px-4 py-2.5 rounded-xl bg-orange-500 text-white text-xs font-bold hover:bg-orange-600 flex items-center gap-1.5 transition shadow-xs"
                 >
                   <PhoneCall className="w-3.5 h-3.5" />
-                  <span>โทร: {CONTACT_INFO.phones[1].number}</span>
+                  <span>{isTh ? "โทร" : "Call"}: {CONTACT_INFO.phones[1].number}</span>
                 </a>
                 <a
                   href={CONTACT_INFO.lineUrl}
@@ -179,7 +181,7 @@ export function BookingSection({ lang, selectedCarModel }: BookingSectionProps) 
                   onClick={() => setSubmitted(false)}
                   className="px-6 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-orange-600 transition"
                 >
-                  {isTh ? "จองคันอื่นเพิ่มเติม" : "Book Another Vehicle"}
+                  {t.bookAnotherBtn || (isTh ? "จองคันอื่นเพิ่มเติม" : "Book Another Vehicle")}
                 </button>
               </div>
             </div>
@@ -188,7 +190,7 @@ export function BookingSection({ lang, selectedCarModel }: BookingSectionProps) 
               {errorMsg && (
                 <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-                  <span>{errorMsg} (ระบบกำลังเปิดโปรแกรมส่งอีเมลสำรองให้ครับ)</span>
+                  <span>{errorMsg} ({isTh ? "ระบบกำลังเปิดโปรแกรมส่งอีเมลสำรองให้ครับ" : "Opening backup email client..."})</span>
                 </div>
               )}
 
@@ -206,13 +208,11 @@ export function BookingSection({ lang, selectedCarModel }: BookingSectionProps) 
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 font-medium"
                     required
                   >
-                    <option value="สนามบินสุวรรณภูมิ (BKK)">สนามบินสุวรรณภูมิ (BKK)</option>
-                    <option value="สนามบินดอนเมือง (DMK)">สนามบินดอนเมือง (DMK)</option>
-                    <option value="กรุงเทพฯ - ตัวเมือง / ส่งถึงโรงแรม">กรุงเทพฯ - ตัวเมือง / ส่งถึงโรงแรม</option>
-                    <option value="สนามบินเชียงใหม่ (CNX)">สนามบินเชียงใหม่ (CNX)</option>
-                    <option value="สนามบินภูเก็ต (HKT)">สนามบินภูเก็ต (HKT)</option>
-                    <option value="พัทยา / ชลบุรี">พัทยา / ชลบุรี</option>
-                    <option value="โคราช / นครราชสีมา">โคราช / นครราชสีมา</option>
+                    {t.locations?.map((loc) => (
+                      <option key={loc.value} value={loc.value}>
+                        {loc.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -228,13 +228,11 @@ export function BookingSection({ lang, selectedCarModel }: BookingSectionProps) 
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 font-medium"
                     required
                   >
-                    <option value="สนามบินสุวรรณภูมิ (BKK)">สนามบินสุวรรณภูมิ (BKK)</option>
-                    <option value="สนามบินดอนเมือง (DMK)">สนามบินดอนเมือง (DMK)</option>
-                    <option value="กรุงเทพฯ - ตัวเมือง / ส่งถึงโรงแรม">กรุงเทพฯ - ตัวเมือง / ส่งถึงโรงแรม</option>
-                    <option value="สนามบินเชียงใหม่ (CNX)">สนามบินเชียงใหม่ (CNX)</option>
-                    <option value="สนามบินภูเก็ต (HKT)">สนามบินภูเก็ต (HKT)</option>
-                    <option value="พัทยา / ชลบุรี">พัทยา / ชลบุรี</option>
-                    <option value="โคราช / นครราชสีมา">โคราช / นครราชสีมา</option>
+                    {t.locations?.map((loc) => (
+                      <option key={loc.value} value={loc.value}>
+                        {loc.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -305,19 +303,31 @@ export function BookingSection({ lang, selectedCarModel }: BookingSectionProps) 
                     onChange={(e) => setFormData({ ...formData, carType: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 font-medium"
                   >
-                    <optgroup label="รถเก๋งซีดาน (Sedan)">
-                      <option value="Toyota Corolla Altis (Sedan • 1-3 ที่นั่ง)">Toyota Corolla Altis (Sedan • นั่งสบาย 1-3 ท่าน)</option>
-                      <option value="Toyota Camry (Sedan VIP • 1-4 ที่นั่ง)">Toyota Camry (Sedan VIP • พรีเมียม 1-4 ท่าน)</option>
+                    <optgroup label={isTh ? "รถเก๋งซีดาน (Sedan)" : "Sedan (1-4 Passengers)"}>
+                      <option value="Toyota Corolla Altis (Sedan • 1-3 ที่นั่ง)">
+                        {isTh ? "Toyota Corolla Altis (Sedan • นั่งสบาย 1-3 ท่าน)" : "Toyota Corolla Altis (Sedan • 1-3 Pax)"}
+                      </option>
+                      <option value="Toyota Camry (Sedan VIP • 1-4 ที่นั่ง)">
+                        {isTh ? "Toyota Camry (Sedan VIP • พรีเมียม 1-4 ท่าน)" : "Toyota Camry (Sedan VIP • 1-4 Pax)"}
+                      </option>
                     </optgroup>
                     
-                    <optgroup label="รถครอบครัวอเนกประสงค์ (SUV)">
-                      <option value="Toyota Fortuner (SUV • 1-5 ที่นั่ง ยอดนิยม)">Toyota Fortuner (SUV • 1-5 ท่าน ยอดนิยมอันดับ 1)</option>
-                      <option value="Isuzu MU-X (SUV • 1-5 ที่นั่ง สัมภาระเยอะ)">Isuzu MU-X (SUV • 1-5 ท่าน สัมภาระเยอะ)</option>
+                    <optgroup label={isTh ? "รถครอบครัวอเนกประสงค์ (SUV)" : "SUV (1-5 Passengers)"}>
+                      <option value="Toyota Fortuner (SUV • 1-5 ที่นั่ง ยอดนิยม)">
+                        {isTh ? "Toyota Fortuner (SUV • 1-5 ท่าน ยอดนิยมอันดับ 1)" : "Toyota Fortuner (SUV • 1-5 Pax Popular)"}
+                      </option>
+                      <option value="Isuzu MU-X (SUV • 1-5 ที่นั่ง สัมภาระเยอะ)">
+                        {isTh ? "Isuzu MU-X (SUV • 1-5 ท่าน สัมภาระเยอะ)" : "Isuzu MU-X (SUV • 1-5 Pax Spacious Luggage)"}
+                      </option>
                     </optgroup>
 
-                    <optgroup label="รถตู้ VIP & MPV (Van)">
-                      <option value="Toyota Commuter (Van • 5-10 ที่นั่ง เดินทางกลุ่ม)">Toyota Commuter (Van • 5-10 ท่าน เดินทางกลุ่ม/ครอบครัวใหญ่)</option>
-                      <option value="Toyota Alphard VIP (First Class • 1-5 ที่นั่ง)">Toyota Alphard (First Class VIP • 1-5 ท่าน เบาะไฟฟ้า)</option>
+                    <optgroup label={isTh ? "รถตู้ VIP & MPV (Van)" : "VIP Van & MPV (5-10 Passengers)"}>
+                      <option value="Toyota Commuter (Van • 5-10 ที่นั่ง เดินทางกลุ่ม)">
+                        {isTh ? "Toyota Commuter (Van • 5-10 ท่าน เดินทางกลุ่ม/ครอบครัวใหญ่)" : "Toyota Commuter (VIP Van • 5-10 Pax Group Travel)"}
+                      </option>
+                      <option value="Toyota Alphard VIP (First Class • 1-5 ที่นั่ง)">
+                        {isTh ? "Toyota Alphard (First Class VIP • 1-5 ท่าน เบาะไฟฟ้า)" : "Toyota Alphard (First Class VIP • 1-5 Pax Luxury Seats)"}
+                      </option>
                     </optgroup>
                   </select>
                 </div>
@@ -334,7 +344,7 @@ export function BookingSection({ lang, selectedCarModel }: BookingSectionProps) 
                   <input
                     type="text"
                     required
-                    placeholder="เช่น คุณสมชาย เดินทางดี"
+                    placeholder={isTh ? "เช่น คุณสมชาย เดินทางดี" : "e.g. John Doe"}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 font-medium"
@@ -349,7 +359,7 @@ export function BookingSection({ lang, selectedCarModel }: BookingSectionProps) 
                   <input
                     type="tel"
                     required
-                    placeholder="08X-XXX-XXXX"
+                    placeholder={isTh ? "08X-XXX-XXXX" : "+66 8X-XXX-XXXX"}
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 font-medium"
@@ -363,7 +373,7 @@ export function BookingSection({ lang, selectedCarModel }: BookingSectionProps) 
                   </label>
                   <input
                     type="text"
-                    placeholder="Line ID หรือ WhatsApp"
+                    placeholder={isTh ? "Line ID หรือ WhatsApp" : "Line ID or WhatsApp"}
                     value={formData.lineId}
                     onChange={(e) => setFormData({ ...formData, lineId: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 font-medium"
