@@ -131,12 +131,24 @@ export async function getFaqsFromSanity(): Promise<{ q: string; a: string }[]> {
   }
 }
 
+export interface ServiceHighlightItem {
+  emoji?: string
+  title: string
+  titleTh?: string
+  desc?: string
+  tags?: string[]
+  isDestinations?: boolean
+}
+
 export interface ServicesSectionData {
   badge?: string
   title?: string
   subtitle?: string
   slogan?: string
   bannerImageUrl?: string
+  highlightsBadge?: string
+  highlightsTitle?: string
+  highlightsList?: ServiceHighlightItem[]
   rateImageUrl?: string
   guaranteeBadge?: string
   guaranteeTitle?: string
@@ -164,6 +176,9 @@ export async function getServicesSectionFromSanity(): Promise<ServicesSectionDat
       subtitle: doc.subtitle,
       slogan: doc.slogan,
       bannerImageUrl: doc.bannerImage ? urlFor(doc.bannerImage).width(1400).url() : undefined,
+      highlightsBadge: doc.highlightsBadge,
+      highlightsTitle: doc.highlightsTitle,
+      highlightsList: doc.highlightsList,
       rateImageUrl: doc.rateImage ? urlFor(doc.rateImage).width(1400).url() : undefined,
       guaranteeBadge: doc.guaranteeBadge,
       guaranteeTitle: doc.guaranteeTitle,
@@ -179,6 +194,7 @@ export async function getServicesSectionFromSanity(): Promise<ServicesSectionDat
     return null
   }
 }
+
 
 
 

@@ -10,7 +10,8 @@ import {
   Users,
   MapPin,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Compass
 } from "lucide-react";
 import { Language, translations } from "@/lib/i18n/translations";
 import { CONTACT_INFO } from "@/lib/constants/contact";
@@ -55,14 +56,40 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
   const whatsappUrl = sanityData?.whatsappUrl || CONTACT_INFO.whatsappUrl;
   const lineUrl = sanityData?.lineUrl || CONTACT_INFO.lineUrl;
 
-  // 4 Service Highlights (ข้อมูลบริการและเส้นทาง)
-  const serviceHighlights = [
+  const highlightsBadgeText = sanityData?.highlightsBadge || (isTh ? "บริการหลักและเส้นทางยอดนิยม" : "Service Offerings & Top Routes");
+  const highlightsTitleText = sanityData?.highlightsTitle || (isTh ? "ตอบโจทย์ทุกรูปแบบการเดินทางทั่วไทย" : "Comprehensive Travel Solutions Across Thailand");
+
+  // Default Palette Styles
+  const palette = [
+    {
+      icon: Plane,
+      color: "from-blue-500 to-indigo-600",
+      pillBg: "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100",
+    },
+    {
+      icon: Car,
+      color: "from-amber-500 to-orange-600",
+      pillBg: "bg-amber-50 text-amber-800 border-amber-200 hover:bg-amber-100",
+    },
+    {
+      icon: Users,
+      color: "from-emerald-500 to-teal-600",
+      pillBg: "bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100",
+    },
+    {
+      icon: MapPin,
+      color: "from-rose-500 to-red-600",
+      pillBg: "bg-rose-50 text-rose-800 border-rose-200 hover:bg-rose-100",
+    },
+  ];
+
+  // Default 4 Service Highlights (ข้อมูลเริ่มต้น)
+  const defaultServiceHighlights = [
     {
       emoji: "🚖",
       icon: Plane,
-      color: "from-blue-500 to-indigo-600",
-      accentBg: "bg-blue-50/80 text-blue-800 border-blue-200/60",
-      pillBg: "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100",
+      color: palette[0].color,
+      pillBg: palette[0].pillBg,
       title: "Airport Transfer",
       titleTh: "บริการรับ-ส่งสนามบิน",
       desc: isTh 
@@ -72,13 +99,13 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
         "Suvarnabhumi Airport (BKK)",
         "Don Mueang Airport (DMK)",
       ],
+      isDestinations: false,
     },
     {
       emoji: "🚘",
       icon: Car,
-      color: "from-amber-500 to-orange-600",
-      accentBg: "bg-amber-50/80 text-amber-900 border-amber-200/60",
-      pillBg: "bg-amber-50 text-amber-800 border-amber-200 hover:bg-amber-100",
+      color: palette[1].color,
+      pillBg: palette[1].pillBg,
       title: "Private Car with Driver",
       titleTh: "รถยนต์ส่วนตัวพร้อมคนขับ",
       desc: isTh
@@ -89,13 +116,13 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
         "Long-Distance",
         "Sedan / SUV",
       ],
+      isDestinations: false,
     },
     {
       emoji: "🚐",
       icon: Users,
-      color: "from-emerald-500 to-teal-600",
-      accentBg: "bg-emerald-50/80 text-emerald-900 border-emerald-200/60",
-      pillBg: "bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100",
+      color: palette[2].color,
+      pillBg: palette[2].pillBg,
       title: "Private Van Service",
       titleTh: "บริการรถตู้ VIP หมู่คณะ",
       desc: isTh
@@ -106,13 +133,13 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
         "VIP 9-10 Seats",
         "Spacious & Clean",
       ],
+      isDestinations: false,
     },
     {
       emoji: "🏝️",
       icon: MapPin,
-      color: "from-rose-500 to-red-600",
-      accentBg: "bg-rose-50/80 text-rose-900 border-rose-200/60",
-      pillBg: "bg-rose-50 text-rose-800 border-rose-200 hover:bg-rose-100",
+      color: palette[3].color,
+      pillBg: palette[3].pillBg,
       title: "Intercity Transfer",
       titleTh: "เดินทางข้ามจังหวัดยอดนิยม",
       desc: isTh
@@ -130,6 +157,24 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
       isDestinations: true,
     },
   ];
+
+  // If Sanity provides custom highlights list, use it; otherwise fallback to default
+  const displayHighlights = (sanityData?.highlightsList && sanityData.highlightsList.length > 0)
+    ? sanityData.highlightsList.map((item, idx) => {
+        const style = palette[idx % palette.length];
+        return {
+          emoji: item.emoji || "🚗",
+          icon: item.isDestinations ? MapPin : style.icon,
+          color: style.color,
+          pillBg: style.pillBg,
+          title: item.title,
+          titleTh: item.titleTh,
+          desc: item.desc || "",
+          tags: item.tags || [],
+          isDestinations: Boolean(item.isDestinations),
+        };
+      })
+    : defaultServiceHighlights;
 
   return (
     <section id="services" className="py-16 sm:py-20 bg-gradient-to-b from-white via-amber-50/30 to-white relative scroll-mt-20">
@@ -169,15 +214,15 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
           <div className="text-center max-w-2xl mx-auto mb-8">
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-100 text-orange-900 text-xs font-bold mb-2.5 border border-orange-200">
               <Sparkles className="w-3.5 h-3.5 text-orange-600" />
-              <span>{isTh ? "บริการหลักและเส้นทางยอดนิยม" : "Service Offerings & Top Routes"}</span>
+              <span>{highlightsBadgeText}</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-black text-slate-900">
-              {isTh ? "ตอบโจทย์ทุกรูปแบบการเดินทางทั่วไทย" : "Comprehensive Travel Solutions Across Thailand"}
+              {highlightsTitleText}
             </h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {serviceHighlights.map((svc, idx) => {
+            {displayHighlights.map((svc, idx) => {
               const Icon = svc.icon;
               return (
                 <div
@@ -200,40 +245,46 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
                       <h4 className="text-base font-black text-slate-900 flex items-center gap-1.5">
                         <span>{svc.title}</span>
                       </h4>
-                      <p className="text-xs font-bold text-amber-700 mt-0.5">
-                        {svc.titleTh}
-                      </p>
+                      {svc.titleTh && (
+                        <p className="text-xs font-bold text-amber-700 mt-0.5">
+                          {svc.titleTh}
+                        </p>
+                      )}
                     </div>
 
                     {/* Description */}
-                    <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                      {svc.desc}
-                    </p>
+                    {svc.desc && (
+                      <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                        {svc.desc}
+                      </p>
+                    )}
 
                     {/* Location / Feature Tags */}
-                    <div className="pt-3 border-t border-slate-100">
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1">
-                        {svc.isDestinations ? (
-                          <>
-                            <MapPin className="w-3 h-3 text-rose-500" />
-                            <span>{isTh ? "จุดหมายปลายทางยอดนิยม" : "Top Destinations"}</span>
-                          </>
-                        ) : (
-                          <span>{isTh ? "จุดเด่นและจุดให้บริการ" : "Key Coverage"}</span>
-                        )}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {svc.tags.map((tag, tIdx) => (
-                          <span
-                            key={tIdx}
-                            className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-colors ${svc.pillBg}`}
-                          >
-                            {svc.isDestinations && <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />}
-                            {tag}
-                          </span>
-                        ))}
+                    {svc.tags && svc.tags.length > 0 && (
+                      <div className="pt-3 border-t border-slate-100">
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+                          {svc.isDestinations ? (
+                            <>
+                              <MapPin className="w-3 h-3 text-rose-500" />
+                              <span>{isTh ? "จุดหมายปลายทางยอดนิยม" : "Top Destinations"}</span>
+                            </>
+                          ) : (
+                            <span>{isTh ? "จุดเด่นและจุดให้บริการ" : "Key Coverage"}</span>
+                          )}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {svc.tags.map((tag, tIdx) => (
+                            <span
+                              key={tIdx}
+                              className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-colors ${svc.pillBg}`}
+                            >
+                              {svc.isDestinations && <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />}
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
 
                   {/* Bottom Action Link */}
