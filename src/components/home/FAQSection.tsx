@@ -19,33 +19,13 @@ export function FAQSection({ lang }: FAQSectionProps) {
 
     async function loadFaqs() {
       const sanityFaqs = await getFaqsFromSanity();
-      const rawFaqs = sanityFaqs && sanityFaqs.length > 0 ? sanityFaqs : t.faqs;
-
-      if (lang === "en") {
-        // First set English fallback immediately for instant UI response
+      if (sanityFaqs && sanityFaqs.length > 0) {
         if (!isCancelled) {
-          setFaqs(translations.en.faqSection.faqs);
-        }
-
-        // If Sanity has custom Thai FAQs, automatically translate them
-        if (sanityFaqs && sanityFaqs.length > 0) {
-          try {
-            const res = await fetch("/api/translate", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ items: sanityFaqs, from: "th", to: "en" }),
-            });
-            const result = await res.json();
-            if (result.success && result.items && !isCancelled) {
-              setFaqs(result.items);
-            }
-          } catch (err) {
-            console.warn("Auto-translate fallback to EN translations:", err);
-          }
+          setFaqs(sanityFaqs);
         }
       } else {
         if (!isCancelled) {
-          setFaqs(rawFaqs);
+          setFaqs(translations[lang].faqSection.faqs);
         }
       }
     }
@@ -55,7 +35,7 @@ export function FAQSection({ lang }: FAQSectionProps) {
     return () => {
       isCancelled = true;
     };
-  }, [lang, t.faqs]);
+  }, [lang]);
 
   const toggle = (idx: number) => {
     setOpenIdx(openIdx === idx ? null : idx);

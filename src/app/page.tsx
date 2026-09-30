@@ -33,7 +33,7 @@ export default function HomePage() {
   const [favorites, setFavorites] = useState<string[]>(["car-toyota-altis", "car-toyota-camry", "car-toyota-fortuner"]);
   const [loading, setLoading] = useState(false);
 
-  // Load cars from Sanity CMS with auto-translation for EN
+  // Load cars from Sanity CMS (with fallback to mockCars)
   useEffect(() => {
     let isCancelled = false;
 
@@ -41,24 +41,6 @@ export default function HomePage() {
       setLoading(true);
       const sanityCars = await getCarsFromSanity();
       const baseCars = sanityCars && sanityCars.length > 0 ? sanityCars : initialCarsData;
-
-      if (lang === "en") {
-        try {
-          const res = await fetch("/api/translate", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ items: baseCars, from: "th", to: "en" }),
-          });
-          const result = await res.json();
-          if (result.success && result.items && !isCancelled) {
-            setCars(result.items);
-            setLoading(false);
-            return;
-          }
-        } catch (err) {
-          console.warn("Auto-translate cars error:", err);
-        }
-      }
 
       if (!isCancelled) {
         setCars(baseCars);
@@ -71,7 +53,7 @@ export default function HomePage() {
     return () => {
       isCancelled = true;
     };
-  }, [lang]);
+  }, []);
 
   // UI state
   const [selectedCar, setSelectedCar] = useState<Car | null>(null);

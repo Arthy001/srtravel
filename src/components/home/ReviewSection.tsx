@@ -106,23 +106,6 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
       const sanityReviews = await getReviewsFromSanity();
       const baseReviews = sanityReviews && sanityReviews.length > 0 ? sanityReviews : defaultReviews;
 
-      if (lang === "en") {
-        try {
-          const res = await fetch("/api/translate", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ items: baseReviews, from: "th", to: "en" }),
-          });
-          const result = await res.json();
-          if (result.success && result.items && !isCancelled) {
-            setReviews(result.items);
-            return;
-          }
-        } catch (err) {
-          console.warn("Auto-translate reviews error:", err);
-        }
-      }
-
       if (!isCancelled) {
         setReviews(baseReviews);
       }
@@ -133,7 +116,7 @@ export function ReviewSection({ lang }: ReviewSectionProps) {
     return () => {
       isCancelled = true;
     };
-  }, [lang]);
+  }, []);
 
   const handleOpenLightbox = (index: number) => {
     setSelectedImgIndex(index);

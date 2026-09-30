@@ -4,7 +4,13 @@ import React, { useState, useEffect } from "react";
 import { 
   PhoneCall, 
   ShieldCheck, 
-  Calendar 
+  Calendar,
+  Plane,
+  Car,
+  Users,
+  MapPin,
+  Sparkles,
+  ArrowRight
 } from "lucide-react";
 import { Language, translations } from "@/lib/i18n/translations";
 import { CONTACT_INFO } from "@/lib/constants/contact";
@@ -16,6 +22,7 @@ interface ServicesSectionProps {
 
 export function ServicesSection({ lang }: ServicesSectionProps) {
   const t = translations[lang].servicesSection;
+  const isTh = lang === "th";
   const [sanityData, setSanityData] = useState<ServicesSectionData | null>(null);
 
   useEffect(() => {
@@ -47,6 +54,82 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
   const facebookUrl = sanityData?.facebookUrl || CONTACT_INFO.facebookUrl;
   const whatsappUrl = sanityData?.whatsappUrl || CONTACT_INFO.whatsappUrl;
   const lineUrl = sanityData?.lineUrl || CONTACT_INFO.lineUrl;
+
+  // 4 Service Highlights (ข้อมูลบริการและเส้นทาง)
+  const serviceHighlights = [
+    {
+      emoji: "🚖",
+      icon: Plane,
+      color: "from-blue-500 to-indigo-600",
+      accentBg: "bg-blue-50/80 text-blue-800 border-blue-200/60",
+      pillBg: "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100",
+      title: "Airport Transfer",
+      titleTh: "บริการรับ-ส่งสนามบิน",
+      desc: isTh 
+        ? "บริการรถรับส่งสนามบิน และรถเช่าพร้อมคนขับทั่วไทย ตรงเวลา ปลอดภัย ไม่ตกเครื่อง"
+        : "Direct airport transfer and private car rental with professional driver nationwide.",
+      tags: [
+        "Suvarnabhumi Airport (BKK)",
+        "Don Mueang Airport (DMK)",
+      ],
+    },
+    {
+      emoji: "🚘",
+      icon: Car,
+      color: "from-amber-500 to-orange-600",
+      accentBg: "bg-amber-50/80 text-amber-900 border-amber-200/60",
+      pillBg: "bg-amber-50 text-amber-800 border-amber-200 hover:bg-amber-100",
+      title: "Private Car with Driver",
+      titleTh: "รถยนต์ส่วนตัวพร้อมคนขับ",
+      desc: isTh
+        ? "Daily and long-distance service บริการทั้งแบบรายวันและเดินทางไกล สะดวกสบายเป็นส่วนตัว"
+        : "Daily and long-distance service with professional driver for ultimate comfort.",
+      tags: [
+        "Daily Rental",
+        "Long-Distance",
+        "Sedan / SUV",
+      ],
+    },
+    {
+      emoji: "🚐",
+      icon: Users,
+      color: "from-emerald-500 to-teal-600",
+      accentBg: "bg-emerald-50/80 text-emerald-900 border-emerald-200/60",
+      pillBg: "bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100",
+      title: "Private Van Service",
+      titleTh: "บริการรถตู้ VIP หมู่คณะ",
+      desc: isTh
+        ? "Family and group travel เบาะ VIP นุ่มสบาย เหมาะสำหรับครอบครัว ท่องเที่ยว และดูงาน"
+        : "Family and group travel in premium VIP vans with spacious seating.",
+      tags: [
+        "Family & Group Travel",
+        "VIP 9-10 Seats",
+        "Spacious & Clean",
+      ],
+    },
+    {
+      emoji: "🏝️",
+      icon: MapPin,
+      color: "from-rose-500 to-red-600",
+      accentBg: "bg-rose-50/80 text-rose-900 border-rose-200/60",
+      pillBg: "bg-rose-50 text-rose-800 border-rose-200 hover:bg-rose-100",
+      title: "Intercity Transfer",
+      titleTh: "เดินทางข้ามจังหวัดยอดนิยม",
+      desc: isTh
+        ? "บริการเดินทางเชื่อมต่อกรุงเทพฯ และเมืองท่องเที่ยวชั้นนำทั่วไทย สะดวกรวดเร็วตลอด 24 ชม."
+        : "Point-to-point transfer between Bangkok and top Thailand destinations.",
+      tags: [
+        "Bangkok",
+        "Pattaya",
+        "Hua Hin",
+        "Korat",
+        "Trat (Koh Chang)",
+        "Chonburi",
+        "Chanthaburi",
+      ],
+      isDestinations: true,
+    },
+  ];
 
   return (
     <section id="services" className="py-16 sm:py-20 bg-gradient-to-b from-white via-amber-50/30 to-white relative scroll-mt-20">
@@ -81,7 +164,102 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
           />
         </div>
 
-        {/* 3. Rate Card Graphic Showcase (rate.png) */}
+        {/* 🌟 3. Service Highlights & Popular Routes (วางก่อนอัตราค่าบริการ) */}
+        <div className="mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-100 text-orange-900 text-xs font-bold mb-2.5 border border-orange-200">
+              <Sparkles className="w-3.5 h-3.5 text-orange-600" />
+              <span>{isTh ? "บริการหลักและเส้นทางยอดนิยม" : "Service Offerings & Top Routes"}</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+              {isTh ? "ตอบโจทย์ทุกรูปแบบการเดินทางทั่วไทย" : "Comprehensive Travel Solutions Across Thailand"}
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {serviceHighlights.map((svc, idx) => {
+              const Icon = svc.icon;
+              return (
+                <div
+                  key={idx}
+                  className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Top Icon & Badge */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${svc.color} text-white flex items-center justify-center shadow-md shadow-orange-500/20`}>
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <span className="text-2xl" title={svc.title}>
+                        {svc.emoji}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <div className="mb-2">
+                      <h4 className="text-base font-black text-slate-900 flex items-center gap-1.5">
+                        <span>{svc.title}</span>
+                      </h4>
+                      <p className="text-xs font-bold text-amber-700 mt-0.5">
+                        {svc.titleTh}
+                      </p>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                      {svc.desc}
+                    </p>
+
+                    {/* Location / Feature Tags */}
+                    <div className="pt-3 border-t border-slate-100">
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+                        {svc.isDestinations ? (
+                          <>
+                            <MapPin className="w-3 h-3 text-rose-500" />
+                            <span>{isTh ? "จุดหมายปลายทางยอดนิยม" : "Top Destinations"}</span>
+                          </>
+                        ) : (
+                          <span>{isTh ? "จุดเด่นและจุดให้บริการ" : "Key Coverage"}</span>
+                        )}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {svc.tags.map((tag, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-colors ${svc.pillBg}`}
+                          >
+                            {svc.isDestinations && <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />}
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Action Link */}
+                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                    <a
+                      href="#booking"
+                      className="text-xs font-bold text-orange-600 hover:text-orange-700 inline-flex items-center gap-1 group/btn"
+                    >
+                      <span>{t.bookBtn}</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                    </a>
+                    <a
+                      href={`tel:${phone1.replace(/[^0-9]/g, '')}`}
+                      className="text-[11px] font-bold text-slate-600 hover:text-slate-900 inline-flex items-center gap-1"
+                    >
+                      <PhoneCall className="w-3 h-3 text-emerald-600" />
+                      <span>{t.callBtn}</span>
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* 4. Rate Card Graphic Showcase (rate.png) */}
         <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200/80 mb-10 bg-slate-900 group">
           <img 
             src={rateImageSrc} 
@@ -90,7 +268,7 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
           />
         </div>
 
-        {/* 4. Quick Contact & Guarantee Footer Strip */}
+        {/* 5. Quick Contact & Guarantee Footer Strip */}
         <div className="mt-10 rounded-3xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 p-6 sm:p-8 text-white shadow-xl shadow-orange-500/20 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold backdrop-blur-xs">
